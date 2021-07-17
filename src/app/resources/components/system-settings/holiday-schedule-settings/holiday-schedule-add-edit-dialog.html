@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>
+    <span *ngIf="type == 'insert'">Add New </span>
+    <span *ngIf="type == 'edit'">Edit </span> Holiday
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <select class="form-control" name="companyname" [ngClass]="{'is-invalid': !companyname.valid && (companyname.dirty || companyname.touched || isSubmit)}" #companyname="ngModel" required [(ngModel)]="formInput.companyname">
+                                <option value disabled selected>Select Company</option>
+                                <option value="Inf Infotech">Inf Infotech</option>
+                                <option value="Maslow Bangladesh">Maslow Bangladesh</option>
+                                <option value="Unimust">Unimust</option>
+                            </select>
+                        <label *ngIf="!companyname.valid && (companyname.dirty || companyname.touched || isSubmit)" id="validation-companyname-error" class="error jquery-validation-error small form-text invalid-feedback">The company selection should be required.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Holiday Name</label>
+                        <input type="text" class="form-control" name="validation-password" placeholder="Enter Holiday Name" [ngClass]="{'is-invalid': !holidayName.valid && (holidayName.dirty || holidayName.touched || isSubmit)}" #holidayName="ngModel" required [(ngModel)]="formInput.holidayName">
+                        <label *ngIf="!holidayName.valid && (holidayName.dirty || holidayName.touched || isSubmit)" id="validation-holidayName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Name.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Form Date</label>
+                        <input type="date" class="form-control" name="validation-password" placeholder="Enter From Date" [ngClass]="{'is-invalid': !fromDate.valid && (fromDate.dirty || fromDate.touched || isSubmit)}" #fromDate="ngModel" required [(ngModel)]="formInput.fromDate">
+
+                        <label *ngIf="!fromDate.valid && (fromDate.dirty || fromDate.touched || isSubmit)" id="validation-fromDate-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid form date.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">To Date</label>
+                        <input type="date" class="form-control" name="validation-password" placeholder="Enter To Date" [ngClass]="{'is-invalid': !toDate.valid && (toDate.dirty || isSubmit)}" #toDate="ngModel" [(ngModel)]="formInput.toDate">
+
+                        <label *ngIf="!toDate.valid && (toDate.dirty || isSubmit)" id="validation-toDate-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid to date.</label>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="button" mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> {{type|titlecase}}</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

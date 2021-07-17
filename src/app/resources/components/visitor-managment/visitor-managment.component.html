@@ -1,0 +1,91 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row leave-card justify-content-center">
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Todays Visitor</h6>
+                            <h4 class="m-t-15 mb-0"> 12</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Visitor Waiting</h6>
+                            <h4 class="m-t-15 mb-0"> 458</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Visitor Company</h6>
+                            <h4 class="m-t-15 mb-0"> 122</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Total Visitor</h6>
+                            <h4 class="m-t-15 mb-0"> 15</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <app-card title="Visitor List">
+                <div class="text-right pb-3">
+                    <button mat-raised-button color="primary" (click)="CreateDialog()">Add New</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>Designation</th>
+                                <th>Phone</th>
+                                <th>Details</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Abc</td>
+                                <td>Infotech</td>
+                                <td>Manager</td>
+                                <td>12345678</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, excepturi.</td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Abc</td>
+                                <td>Infotech</td>
+                                <td>Manager</td>
+                                <td>12345678</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, excepturi.</td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Abc</td>
+                                <td>Infotech</td>
+                                <td>Manager</td>
+                                <td>12345678</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, excepturi.</td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>

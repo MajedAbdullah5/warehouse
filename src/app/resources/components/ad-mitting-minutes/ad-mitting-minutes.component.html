@@ -1,0 +1,126 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12 text-right pb-3">
+            <button mat-raised-button color="primary" (click)="AddMeeting()">Add New</button>
+        </div>
+        <div class="col-sm-4">
+            <div class="row leave-card justify-content-center">
+                <div class="col-md-12">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0 text-warning">Nearest Meeting</h6>
+                            <h4 class="m-t-15 mb-0"> 12 Mar - 10AM</h4>
+                            <p>Mind Script</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Upcomming Meetings</h6>
+                            <h4 class="m-t-15 mb-0"> 15</h4>
+                            <p>15 Aug - 22 Sep</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Total Meetings</h6>
+                            <h4 class="m-t-15 mb-0"> 780</h4>
+                            <p>15 Jun - 22 Sep</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Hours Utilizeds</h6>
+                            <h4 class="m-t-15 mb-0"> 458</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0 text-danger">Meetings Cancled</h6>
+                            <h4 class="m-t-15 mb-0"> 122</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <app-card title="Meeting Calendar" cardClass="elite-calendar">
+                <full-calendar [options]="calendarOptions"></full-calendar>
+            </app-card>
+        </div>
+
+        <div class="col-sm-12">
+            <app-card title="Meeting List">
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Subject</th>
+                                <th>Company</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Meeting Room</th>
+                                <th>Details</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Business Manage</td>
+                                <td>Infotech</td>
+                                <td>12 App 2021</td>
+                                <td>10 AM - 12 PM</td>
+                                <td>806C</td>
+                                <td><button class="btn btn-info btn-sm" (click)="MeetingDetails()">Details</button></td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditMeeting()"></i><i class="fa fa-trash f-16" (click)="deleteMeeting()"></i></td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Business Manage</td>
+                                <td>Infotech</td>
+                                <td>12 App 2021</td>
+                                <td>10 AM - 12 PM</td>
+                                <td>806C</td>
+                                <td><button class="btn btn-info btn-sm">Details</button></td>
+
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15"></i><i class="fa fa-trash f-16"></i></td>
+                                <!-- <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td> -->
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Business Manage</td>
+                                <td>Infotech</td>
+                                <td>12 App 2021</td>
+                                <td>10 AM - 12 PM</td>
+                                <td>806C</td>
+                                <td><button class="btn btn-info btn-sm" (click)="MeetingDetails()">Details</button></td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditMeeting()"></i><i class="fa fa-trash f-16" (click)="deleteMeeting()"></i></td>
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>Business Manage</td>
+                                <td>Infotech</td>
+                                <td>12 App 2021</td>
+                                <td>10 AM - 12 PM</td>
+                                <td>806C</td>
+                                <td><button class="btn btn-info btn-sm" (click)="MeetingDetails()">Details</button></td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditMeeting()"></i><i class="fa fa-trash f-16" (click)="deleteMeeting()"></i></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>

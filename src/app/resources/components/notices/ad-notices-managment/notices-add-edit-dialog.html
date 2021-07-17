@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>
+    Notice
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+
+                <div class="col-md-5">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Notices Title</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Company</mat-label>
+                        <mat-select [formControl]="toppings" multiple>
+                            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Department</mat-label>
+                        <mat-select multiple>
+                            <mat-option *ngFor="let topping of departmentList" [value]="topping">{{topping}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Designation</mat-label>
+                        <mat-select [formControl]="toppings" multiple>
+                            <mat-option *ngFor="let topping of designationList" [value]="topping">{{topping}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Employee</mat-label>
+                        <mat-select [formControl]="toppings" multiple>
+                            <mat-option *ngFor="let topping of employeeList" [value]="topping">{{topping}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="form-group">
+                        <label class="form-label">Notice Details</label>
+                        <textarea name="" id="" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="button" mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

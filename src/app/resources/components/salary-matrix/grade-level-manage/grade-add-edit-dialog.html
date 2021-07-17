@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>
+    Grade
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form class="editForm ">
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+
+                    <div class="form-group row ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Company <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <select name="" id="" class="form-control-plaintext">
+                                <option value="atoffice">Infotech</option>
+                                <option value="atoffice">Maslow</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Grade Name <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="staticEmail">
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Remarks</label>
+                        <div class="col-sm-9">
+                            <textarea name="" id="" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <h5>Grade Lavel</h5>
+                            <table class="table">
+                                <tr>
+                                    <th>Sl</th>
+                                    <th>Lavel Name <span class="text-danger">*</span></th>
+                                    <th>Remarks</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td>01 </td>
+                                    <td> <input type="text" class="form-control"> </td>
+                                    <td> <input type="text" class="form-control"> </td>
+                                    <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>02 </td>
+                                    <td> <input type="text" class="form-control"> </td>
+                                    <td> <input type="text" class="form-control"> </td>
+                                    <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                                </tr>
+                                <tr>
+                                    <td><button class="btn btn-primary btn-sm">Add New</button></td>
+                                    <td colspan="3" class="text-right"><button type="submit" mat-raised-button color="primary"> Create </button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

@@ -1,0 +1,178 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="row leave-card justify-content-center">
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0 text-warning">Todays</h6>
+                            <h4 class="m-t-15 mb-0"> 5</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Pending</h6>
+                            <h4 class="m-t-15 mb-0"> 15</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">On Process Requisitions</h6>
+                            <h4 class="m-t-15 mb-0"> 458</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Complete</h6>
+                            <h4 class="m-t-15 mb-0"> 458</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0 text-danger">Cencel</h6>
+                            <h4 class="m-t-15 mb-0"> 458</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center order-visitor-card cursor-pointer">
+                        <div class="card-block">
+                            <h6 class="m-b-0">Total</h6>
+                            <h4 class="m-t-15 mb-0"> 458</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12">
+            <app-card [title]="'Requisitions'">
+                <form class="example-form row">
+                    <div class="col-sm-3">
+                        <mat-form-field class="example-full-width w-100" appearance="fill">
+                            <mat-label>Choose an Company</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                                <mat-option selected value="today">Infotech</mat-option>
+                                <mat-option value="thisweek">Maslow</mat-option>
+                                <mat-option value="last15days">Unimust</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <mat-form-field class="example-full-width  w-100" appearance="fill">
+                            <mat-label>Department</mat-label>
+                            <input matInput aria-label="State" [matAutocomplete]="auto">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option value="Sick">Accounts</mat-option>
+                                <mat-option value="Sick">Marketing</mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-form-field class="example-form-field w-100" appearance="fill">
+                            <mat-label>By Date</mat-label>
+                            <mat-date-range-input [formGroup]="campaignOne" [rangePicker]="campaignOnePicker">
+                                <input matStartDate placeholder="Start date" formControlName="start">
+                                <input matEndDate placeholder="End date" formControlName="end">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-2">
+                        <button mat-raised-button type="submit" color="primary">Search</button>
+                    </div>
+                </form>
+            </app-card>
+        </div>
+        <div class="col-sm-12">
+            <app-card>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-live bg-light d-inline-block">
+                        <li class="breadcrumb-item active"><a href="#">All(20)</a></li>
+                        <li class="breadcrumb-item"><a href="#">Approved(12)</a></li>
+                        <li class="breadcrumb-item"><a href="#">Pending(5)</a></li>
+                        <li class="breadcrumb-item"><a href="#">Rejected(3)</a></li>
+                    </ol>
+                    <div class="text-right float-right d-inline-block">
+                        <button mat-raised-button color="primary" (click)="ReqCreate()">Requisitions Create</button>
+                    </div>
+                </nav>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Company</th>
+                                <th>Department</th>
+                                <th>Subject</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total</th>
+                                <th>Remarks</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Maslow</td>
+                                <td>Marketing</td>
+                                <td>Laptop</td>
+                                <td>10</td>
+                                <td>56,000</td>
+                                <td>56,0000</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ipsum?</td>
+                                <td><button class="btn btn-warning btn-sm">Pending</button></td>
+                                <td><button class="btn btn-info btn-sm" (click)="ReqDetails()">Details</button></td>
+                                <td><a href="javascript:" (click)="EditReq()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteReq()"><i class="fa fa-trash f-16"></i></a></td>
+
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Maslow</td>
+                                <td>Marketing</td>
+                                <td>Laptop</td>
+                                <td>10</td>
+                                <td>56,000</td>
+                                <td>56,0000</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ipsum?</td>
+                                <td><button class="btn btn-warning btn-sm">Pending</button></td>
+                                <td><button class="btn btn-info btn-sm" (click)="ReqDetails()">Details</button></td>
+                                <td><a href="javascript:" (click)="EditReq()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteReq()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>01</td>
+                                <td>Maslow</td>
+                                <td>Marketing</td>
+                                <td>Laptop</td>
+                                <td>10</td>
+                                <td>56,000</td>
+                                <td>56,0000</td>
+                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ipsum?</td>
+                                <td><button class="btn btn-warning btn-sm">Pending</button></td>
+                                <td><button class="btn btn-info btn-sm" (click)="ReqDetails()">Details</button></td>
+                                <td><a href="javascript:" (click)="EditReq()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteReq()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>

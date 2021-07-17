@@ -1,0 +1,7 @@
+.leave-card .card .card-block {
+    padding: 16px 6px 12px;
+}
+
+.breadcrumb-live .breadcrumb-item+.breadcrumb-item::before {
+    content: '|' !important
+}

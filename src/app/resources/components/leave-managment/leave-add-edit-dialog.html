@@ -1,0 +1,71 @@
+<h2 mat-dialog-title>
+    Apply Leave
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm ">
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+
+
+                    <div class="form-group row ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Leave Type <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <select name="" id="" class="form-control-plaintext">
+                                <option value="atoffice">Sick Leave</option>
+                                <option value="atoffice">Annual Leave</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label text-right">From Date <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="staticEmail">
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label text-right">To Date</label>
+                        <div class="col-sm-9">
+                            <input type="date" class="form-control" id="staticEmail">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label text-right">Leave Reason <span class="text-danger">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea name="" id="" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label text-right">Docs</label>
+                        <div class="col-sm-9">
+                            <textarea name="" id="" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Recomended</label>
+                        <div class="col-sm-9">
+                            <select name="" id="" class="form-control">
+                                <option>Choose Recomender</option>
+                                <option>Md. Akbar Haider</option>
+                                <option>Md. Haider Ali</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label text-right"></label>
+                        <div class="col-sm-9">
+                            <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> Apply </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

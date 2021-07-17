@@ -1,0 +1,11 @@
+.pcoded[theme-layout="vertical"] .pcoded-navbar {
+    z-index: inherit !important;
+}
+
+.pcoded[vertical-nav-type="compact"][vertical-effect="overlay"] .pcoded-overlay-box,
+.pcoded[vertical-nav-type="ex-popover"][vertical-effect="overlay"] .pcoded-overlay-box,
+.pcoded[vertical-nav-type="expanded"][vertical-effect="overlay"] .pcoded-overlay-box,
+.pcoded[vertical-nav-type="fullsub-collapsed"][vertical-effect="overlay"] .pcoded-overlay-box,
+.pcoded[vertical-nav-type="sub-expanded"][vertical-effect="overlay"] .pcoded-overlay-box {
+    z-index: 9 !important;
+}

@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>
+    <span *ngIf="type == 'insert'">Add New </span>
+    <span *ngIf="type == 'edit'">Edit </span> Education
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label class="col-form-label">Previous Company <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Job Title<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">From<span class="text-danger">*</span></label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">To<span class="text-danger">*</span></label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Document</label>
+                        <input type="file" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Description</label>
+                        <textarea name="" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" mat-raised-button color="primary" class="btn">Save</button>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

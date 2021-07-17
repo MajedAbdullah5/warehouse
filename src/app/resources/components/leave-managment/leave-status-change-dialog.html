@@ -1,0 +1,35 @@
+<mat-dialog-content class="mat-typography" style="width:60vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <p>Are you going to chage leave status?</p>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="d-block">
+                            <mat-label>Status</mat-label>
+                            <mat-select>
+                                <mat-option>None</mat-option>
+                                <mat-option value="one">Approve</mat-option>
+                                <mat-option value="two">Cencle</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group">
+                        <mat-form-field appearance="fill" class="d-block">
+                            <mat-label>Days</mat-label>
+                            <input matInput value="7">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="button" mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary">Save</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</mat-dialog-content>

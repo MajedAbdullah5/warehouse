@@ -1,0 +1,102 @@
+<h2 mat-dialog-title>
+    Meeting
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm ">
+            <div class="row">
+                <div class="form-group  col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Company</mat-label>
+                        <mat-select>
+                            <mat-option>Infotech</mat-option>
+                            <mat-option>Maslow</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label> From Time</mat-label>
+                        <input matInput [matDatepicker]="picker" type="time">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>To Time</mat-label>
+                        <input matInput [matDatepicker]="picker" type="time">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Subject</mat-label>
+                        <input matInput placeholder="Ex. Business">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Members</mat-label>
+                        <input matInput aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+                        <mat-autocomplete #auto="matAutocomplete" multiple>
+                            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                                <img class="example-option-img mr-2" aria-hidden [src]="state.profile_pic" height="30" width="30">
+                                <span class="pr-2">{{state.name}}</span> |
+                                <small>Designation: {{state.designation}}</small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="form-group col-md-3">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Meeting Room</mat-label>
+                        <mat-select>
+                            <mat-option>Mind Script</mat-option>
+                            <mat-option>Timbukto</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="table-responsive col-sm-8">
+                    <table class="table table-bordared">
+                        <tr>
+                            <th>Agenda</th>
+                            <th>Details</th>
+                            <th>Docs</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" class="form-control"> </td>
+                            <td> <textarea name="" class="form-control" rows="3"></textarea> </td>
+                            <td> <input type="file" class="form-control"> </td>
+                            <td> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                        </tr>
+                        <tr>
+                            <td> <input type="text" class="form-control"> </td>
+                            <td> <textarea name="" class="form-control" rows="3"></textarea> </td>
+                            <td> <input type="file" class="form-control"> </td>
+                            <td><i class="fa fa-plus-square" aria-hidden="true"></i></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-8">
+                    <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> Create </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</mat-dialog-content>

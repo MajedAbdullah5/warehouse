@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>
+    <span *ngIf="type == 'insert'">Add New </span>
+    <span *ngIf="type == 'edit'">Edit </span> Employee Type
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <select class="form-control" name="companyname" [ngClass]="{'is-invalid': !companyname.valid && (companyname.dirty || companyname.touched || isSubmit)}" #companyname="ngModel" required [(ngModel)]="formInput.companyname">
+                                <option value disabled selected>Select Company</option>
+                                <option value="Inf Infotech">Inf Infotech</option>
+                                <option value="Maslow Bangladesh">Maslow Bangladesh</option>
+                                <option value="Unimust">Unimust</option>
+                            </select>
+                        <label *ngIf="!companyname.valid && (companyname.dirty || companyname.touched || isSubmit)" id="validation-companyname-error" class="error jquery-validation-error small form-text invalid-feedback">The company selection should be required.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Type Name</label>
+                        <input type="text" class="form-control" name="validation-password" placeholder="Enter Department Name" [ngClass]="{'is-invalid': !employeeType.valid && (employeeType.dirty || employeeType.touched || isSubmit)}" #employeeType="ngModel" minlength="6" required
+                            [(ngModel)]="formInput.employeeType">
+                        <label *ngIf="!employeeType.valid && (employeeType.dirty || employeeType.touched || isSubmit)" id="validation-employeeType-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
+                    </div>
+                    <div class="form-group text-right">
+                        <button mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> {{type|titlecase}}</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

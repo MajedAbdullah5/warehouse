@@ -1,0 +1,178 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-card [title]="'Grade Matrix'">
+                <div class="d-block col-sm-12 mb-3">
+                    <mat-form-field appearance="fill" class=" d-inline-block">
+                        <mat-label>Choose a Company</mat-label>
+                        <mat-select>
+                            <mat-option>None</mat-option>
+                            <mat-option selected value="today">Infotech</mat-option>
+                            <mat-option value="thisweek">Maslow</mat-option>
+                            <mat-option value="last15days">Unimust</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="ml-3 d-inline-block">
+                        <mat-label>Choose a Grade</mat-label>
+                        <mat-select>
+                            <mat-option>None</mat-option>
+                            <mat-option>Grade 1</mat-option>
+                            <mat-option>Grade 2</mat-option>
+                            <mat-option>Grade 3</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="text-right d-inline-block float-right">
+                        <button mat-raised-button color="primary" (click)="GradeMatrixCreate()">Add New</button>
+                    </div>
+                </div>
+            </app-card>
+            <app-card [title]="'Grade 1'">
+
+                <div class="table-responsive mb-3">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Designation</th>
+                                <th>Level 1</th>
+                                <th>Level 2</th>
+                                <th>Level 3</th>
+                                <th>Level 4</th>
+                                <th>Level 5</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Chairman</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>2,22000 - 3,22000</td>
+                                <td>3,23000 - 4,23000</td>
+                                <td>4,24000 - 5,50000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>CEO</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>Managing Deractor</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+            <app-card [title]="'Grade 2'">
+
+                <div class="table-responsive mb-3">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Designation</th>
+                                <th>Level 1</th>
+                                <th>Level 2</th>
+                                <th>Level 3</th>
+                                <th>Level 4</th>
+                                <th>Level 5</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Chairman</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>CEO</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>Managing Deractor</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+
+            <app-card [title]="'Grade 3'">
+                <div class="table-responsive mb-3">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>Designation</th>
+                                <th>Level 1</th>
+                                <th>Level 2</th>
+                                <th>Level 3</th>
+                                <th>Level 4</th>
+                                <th>Level 5</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Chairman</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>CEO</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>Managing Deractor</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,21000 - 2,21000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td>1,00000 - 12,0000</td>
+                                <td><a href="javascript:" (click)="EditGradeMatrix()"><i class="fa fa-pencil-square-o f-16 m-r-15"></i></a><a href="javascript:" (click)="DeleteGradeMatrix()"><i class="fa fa-trash f-16"></i></a></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>

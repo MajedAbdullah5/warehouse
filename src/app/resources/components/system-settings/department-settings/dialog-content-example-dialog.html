@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>
+    <span *ngIf="type == 'insert'">Add New </span>
+    <span *ngIf="type == 'edit'">Edit </span> Department
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <select class="form-control" name="companyname" [ngClass]="{'is-invalid': !companyname.valid && (companyname.dirty || companyname.touched || isSubmit)}" #companyname="ngModel" required [(ngModel)]="formInput.companyname">
+                                <option value disabled selected>Select Company</option>
+                                <option value="Inf Infotech">Inf Infotech</option>
+                                <option value="Maslow Bangladesh">Maslow Bangladesh</option>
+                                <option value="Unimust">Unimust</option>
+                            </select>
+                        <label *ngIf="!companyname.valid && (companyname.dirty || companyname.touched || isSubmit)" id="validation-companyname-error" class="error jquery-validation-error small form-text invalid-feedback">The company selection should be required.</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="validation-password" placeholder="Enter Department Name" [ngClass]="{'is-invalid': !departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)}" #departmentName="ngModel" minlength="6"
+                            required [(ngModel)]="formInput.departmentName">
+                        <label *ngIf="!departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)" id="validation-departmentName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="validation-address" [ngClass]="{'is-invalid': !departmentDetails.valid && (departmentDetails.dirty || departmentDetails.touched || isSubmit)}" #departmentDetails="ngModel" required [(ngModel)]="formInput.departmentDetails"></textarea>
+                        <label *ngIf="!departmentDetails.valid && (departmentDetails.dirty || departmentDetails.touched || isSubmit)" id="validation-departmentDetails-error" class="error jquery-validation-error small form-text invalid-feedback">The department description field should be required.</label>
+                    </div>
+                    <div class="form-group text-right">
+                        <button mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> {{type|titlecase}}</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

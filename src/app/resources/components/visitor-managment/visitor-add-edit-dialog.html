@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>
+    Visitor Manage
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography" style="width:80vw">
+    <div class="dialog-width">
+        <form #validationForm="ngForm" class="editForm dialog-width">
+            <div class="row justify-content-center">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <select class="form-control" name="companyname" [ngClass]="{'is-invalid': !companyname.valid && (companyname.dirty || companyname.touched || isSubmit)}" #companyname="ngModel" required [(ngModel)]="formInput.companyname">
+                                <option value disabled selected>Select Company</option>
+                                <option value="Inf Infotech">Inf Infotech</option>
+                                <option value="Maslow Bangladesh">Maslow Bangladesh</option>
+                                <option value="Unimust">Unimust</option>
+                            </select>
+                        <label *ngIf="!companyname.valid && (companyname.dirty || companyname.touched || isSubmit)" id="validation-companyname-error" class="error jquery-validation-error small form-text invalid-feedback">The company selection should be required.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="validation-password" [ngClass]="{'is-invalid': !visitorname.valid && (visitorname.dirty || visitorname.touched || isSubmit)}" #visitorname="ngModel" minlength="6" required [(ngModel)]="formInput.visitorname">
+                        <label *ngIf="!visitorname.valid && (visitorname.dirty || visitorname.touched || isSubmit)" id="validation-visitorname-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid  Name.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Designation</label>
+                        <input type="text" class="form-control" name="validation-password" [ngClass]="{'is-invalid': !designation.valid && (designation.dirty || designation.touched || isSubmit)}" #designation="ngModel" minlength="6" required [(ngModel)]="formInput.designation">
+                        <label *ngIf="!designation.valid && (designation.dirty || designation.touched || isSubmit)" id="validation-designation-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Designation Name.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">In time</label>
+                        <input type="text" class="form-control" name="validation-password" [ngClass]="{'is-invalid': !intime.valid && (intime.dirty || intime.touched || isSubmit)}" #intime="ngModel" minlength="6" required [(ngModel)]="formInput.intime">
+                        <label *ngIf="!intime.valid && (intime.dirty || intime.touched || isSubmit)" id="validation-intime-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid In time.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Out time</label>
+                        <input type="text" class="form-control" name="validation-password" [ngClass]="{'is-invalid': !outtime.valid && (outtime.dirty || outtime.touched || isSubmit)}" #outtime="ngModel" minlength="6" required [(ngModel)]="formInput.outtime">
+                        <label *ngIf="!outtime.valid && (outtime.dirty || outtime.touched || isSubmit)" id="validation-outtime-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid In time.</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">In time</label>
+                        <input type="text" class="form-control" name="validation-password" [ngClass]="{'is-invalid': !phone.valid && (phone.dirty || phone.touched || isSubmit)}" #phone="ngModel" minlength="6" required [(ngModel)]="formInput.phone">
+                        <label *ngIf="!phone.valid && (phone.dirty || phone.touched || isSubmit)" id="validation-phone-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Meet With</label>
+                        <input type="text" class="form-control" name="validation-password" [ngClass]="{'is-invalid': !meetwith.valid && (meetwith.dirty || meetwith.touched || isSubmit)}" #meetwith="ngModel" minlength="6" required [(ngModel)]="formInput.meetwith">
+                        <label *ngIf="!meetwith.valid && (meetwith.dirty || meetwith.touched || isSubmit)" id="validation-meetwith-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Details</label>
+                        <textarea name="" id="" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="button" mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> {{type|titlecase}}</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

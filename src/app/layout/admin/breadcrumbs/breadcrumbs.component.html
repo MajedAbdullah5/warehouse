@@ -1,0 +1,27 @@
+<!-- Caption Breadcrumb card start -->
+<div class="container-fluid" *ngFor="let breadcrumb of breadcrumbs; let last = last">
+    <div class="row">
+        <div class="col-12 pt-4">
+            <div class="card-block caption-breadcrumb" *ngIf="breadcrumb.status && last">
+                <div *ngIf="last">
+                    <div class="breadcrumb-header">
+                        <h5 *ngIf="last">{{ breadcrumb.label }}</h5>
+                        <span *ngIf="breadcrumb.caption">{{ breadcrumb.caption }}</span>
+                    </div>
+                    <div class="page-header-breadcrumb">
+                        <ul class="breadcrumb-title">
+                            <li class="breadcrumb-item">
+                                <a [routerLink]="['/dashboard/']" *ngIf="breadcrumb.icon">
+                                    <i [ngClass]="breadcrumb.icon"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs;">
+                                <a [ngClass]="breadcrumb.status === false ? 'not-active': ''" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

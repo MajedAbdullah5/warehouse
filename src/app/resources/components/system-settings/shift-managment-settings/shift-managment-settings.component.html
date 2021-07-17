@@ -1,0 +1,50 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-card title="Shift Types">
+                <div class="text-right pb-3">
+                    <button mat-raised-button color="primary" (click)="CreateDialog()">Add New</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Shift Name</th>
+                                <th>Company</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>01</td>
+                                <td>Abc</td>
+                                <td>Infotech</td>
+                                <td>
+                                    <section class="example-section">
+                                        <mat-slide-toggle class="example-margin" [checked]="true" [disabled]="disabled">
+                                        </mat-slide-toggle>
+                                    </section>
+                                </td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Xyz</td>
+                                <td>Infotech</td>
+                                <td>
+                                    <section class="example-section">
+                                        <mat-slide-toggle class="example-margin" [checked]="false" [disabled]="disabled">
+                                        </mat-slide-toggle>
+                                    </section>
+                                </td>
+                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </app-card>
+        </div>
+    </div>
+</div>
