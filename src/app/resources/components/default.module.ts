@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default.component';
-import {DefaultRoutingModule} from './default-routing.module';
-import {SharedModule} from '../../shared/shared.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CustomFormsModule} from 'ngx-custom-validators';
-import {ChartModule} from 'angular2-chartjs';
+import { DefaultRoutingModule } from './default-routing.module';
+import { SharedModule } from '../../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ngx-custom-validators';
+import { ChartModule } from 'angular2-chartjs';
 import { LayoutRoutes } from './layout.routing';
 import { CMaterialModule } from '../../modules/c-material/c-material.module'
 
@@ -19,8 +19,8 @@ import { DeleteDepartmentDataDialog, DepartmentSettingsComponent,DialogContentEx
 import { MatDialogModule } from '@angular/material/dialog';
 import {  DesignationSettingsComponent, DesignationEditDialog, DeleteDesignationDataDialog } from './system-settings/designation-settings/designation-settings.component';
 import { EmployeeTypeSettingsComponent, EmployeeTypeAddEditComponent, DeleteEmployeeTypeDataDialog } from './system-settings/employee-type-settings/employee-type-settings.component';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {  LeaveTypeAddEditComponent, LeaveTypeComponent,DeleteLeaveTypeDataDialog } from './system-settings/leave-type/leave-type.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { LeaveTypeAddEditComponent, LeaveTypeComponent,DeleteLeaveTypeDataDialog } from './system-settings/leave-type/leave-type.component';
 import { DeleteHolidayScheduleDataDialog, HolidayScheduleAddEditComponent, HolidayScheduleSettingsComponent } from './system-settings/holiday-schedule-settings/holiday-schedule-settings.component';
 import { ShiftManagmentSettingsComponent, DeleteShiftDataDialog, ShiftAddEditComponent } from './system-settings/shift-managment-settings/shift-managment-settings.component';
 import { DeleteEducationDataDialog, DeleteExparienceDataDialog, EducationAddEditComponent, EmployeeManagmentComponent, ExparienceAddEditComponent } from './employee-managment/employee-managment.component';

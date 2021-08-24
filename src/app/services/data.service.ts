@@ -17,13 +17,14 @@ export interface IUserResponse {
 })
 export class DataService {
   apiendPoint = environment.API_URL;
-  // apikey = Appsettings.getApiKey();
-  apikey = '';
-  constructor(private https: HttpClient) { }
+  apikey = Appsettings.getApiKey();
+  constructor(private https: HttpClient) { 
+   
+  }
 
   httpHeader = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     })
   }
 
@@ -34,7 +35,10 @@ export class DataService {
   }
 
   getAll(path: string): Observable<any> {
-    return this.https.get(this.apiendPoint + path + '/' + this.apikey)
+    let rn = this.https.get(this.apiendPoint + path + '/' + this.apikey);
+    console.log(rn);
+    return rn;
+    // return this.https.get(this.apiendPoint + path + '/' + this.apikey)
   }
 
   getdata(id, path): Observable<any> {
@@ -90,6 +94,37 @@ export class DataService {
     console.log(msg);
     return throwError(msg);
   }
+
+
+   getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+  
+   checkCookie(cookiename) {
+    let user = this.getCookie(cookiename);
+    if (user != "") {
+      return false;
+    } else {
+      return true;
+      // user = prompt("Please enter your name:", "");
+      // if (user != "" && user != null) {
+      //   // this.setCookie("username", user, 365);
+      // }
+    }
+  }
+
+
 
 
 }

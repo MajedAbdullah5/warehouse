@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+// import * as am4core from "@amcharts/amcharts4/core";
+// import * as am4charts from "@amcharts/amcharts4/charts";
+// import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -22,7 +22,7 @@ import '../../../../assets/charts/amchart/serial.js';
 import '../../../../assets/charts/amchart/light.js';
 import '../../../../assets/charts/amchart/ammap.js';
 import '../../../../assets/charts/amchart/usaLow.js';
-am4core.useTheme(am4themes_animated);
+// am4core.useTheme(am4themes_animated);
 
 // dialog interface data are defined here
 export interface DialogData {
@@ -160,60 +160,60 @@ export class AllAttendanceManagmentComponent implements OnInit {
 
 
   ngOnInit(): void {
-    setTimeout(() => {
+    // setTimeout(() => {
 
-      let chart = am4core.create("employee-attendance-chart", am4charts.PieChart);
-      chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+    //   let chart = am4core.create("employee-attendance-chart", am4charts.PieChart);
+    //   chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
-      chart.data = [
-        {
-          country: "Present",
-          value: 401
-        },
-        {
-          country: "Home Office",
-          value: 200
-        },
-        {
-          country: "Out Of Office",
-          value: 300
-        },
-        {
-          country: "Late",
-          value: 165
-        },
-        {
-          country: "Leave",
-          value: 139
-        },
-        {
-          country: "Absent",
-          value: 128,
-          color:"#EF9A9A"
-        }
-      ];
-      chart.radius = am4core.percent(70);
-      chart.innerRadius = am4core.percent(40);
-      chart.startAngle = 180;
-      chart.endAngle = 360;  
+    //   chart.data = [
+    //     {
+    //       country: "Present",
+    //       value: 401
+    //     },
+    //     {
+    //       country: "Home Office",
+    //       value: 200
+    //     },
+    //     {
+    //       country: "Out Of Office",
+    //       value: 300
+    //     },
+    //     {
+    //       country: "Late",
+    //       value: 165
+    //     },
+    //     {
+    //       country: "Leave",
+    //       value: 139
+    //     },
+    //     {
+    //       country: "Absent",
+    //       value: 128,
+    //       color:"#EF9A9A"
+    //     }
+    //   ];
+    //   chart.radius = am4core.percent(70);
+    //   chart.innerRadius = am4core.percent(40);
+    //   chart.startAngle = 180;
+    //   chart.endAngle = 360;  
       
-      let series = chart.series.push(new am4charts.PieSeries());
-      series.dataFields.value = "value";
-      series.dataFields.category = "country";
-      series.slices.template.propertyFields.fill = "color";
+    //   let series = chart.series.push(new am4charts.PieSeries());
+    //   series.dataFields.value = "value";
+    //   series.dataFields.category = "country";
+    //   series.slices.template.propertyFields.fill = "color";
       
-      series.slices.template.cornerRadius = 10;
-      series.slices.template.innerCornerRadius = 7;
-      series.slices.template.draggable = true;
-      series.slices.template.inert = true;
-      series.alignLabels = false;
+    //   series.slices.template.cornerRadius = 10;
+    //   series.slices.template.innerCornerRadius = 7;
+    //   series.slices.template.draggable = true;
+    //   series.slices.template.inert = true;
+    //   series.alignLabels = false;
       
-      series.hiddenState.properties.startAngle = 90;
-      series.hiddenState.properties.endAngle = 90;
+    //   series.hiddenState.properties.startAngle = 90;
+    //   series.hiddenState.properties.endAngle = 90;
       
-      chart.legend = new am4charts.Legend();
+    //   chart.legend = new am4charts.Legend();
 
-    }, 75);
+    // }, 75);
   }
 
 

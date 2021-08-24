@@ -24,6 +24,10 @@
                         <input type="text" class="form-control" name="validation-password" placeholder="Enter Department Name" [ngClass]="{'is-invalid': !leaveName.valid && (leaveName.dirty || leaveName.touched || isSubmit)}" #leaveName="ngModel" minlength="6" required [(ngModel)]="formInput.leaveName">
                         <label *ngIf="!leaveName.valid && (leaveName.dirty || leaveName.touched || isSubmit)" id="validation-leaveName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea name="" id="" class="form-control" rows="3"></textarea>
+                    </div>
                     <div class="form-group text-right">
                         <button type="button" mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
                         <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> {{type|titlecase}}</button>

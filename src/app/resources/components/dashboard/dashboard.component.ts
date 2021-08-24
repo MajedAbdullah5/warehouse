@@ -31,7 +31,9 @@ export class DashboardComponent implements OnInit {
   public secLineData: any;
   public secOption: any;
 
-  constructor() { }
+  constructor() { 
+    // console.log (this.getCookie('user'));
+  }
 
   ngOnInit() {
     setTimeout(() => {

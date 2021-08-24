@@ -23,13 +23,13 @@
                         <label class="form-label">Department Name</label>
                         <input type="text" class="form-control" name="validation-password" placeholder="Enter Department Name" [ngClass]="{'is-invalid': !departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)}" #departmentName="ngModel" minlength="6"
                             required [(ngModel)]="formInput.departmentName">
-                        <label *ngIf="!departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)" id="validation-departmentName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
+                        <label *ngIf="!departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)" id="validation-departmentName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid designation Name.</label>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="validation-password" placeholder="Enter Department Name" [ngClass]="{'is-invalid': !departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)}" #departmentName="ngModel" minlength="6"
-                            required [(ngModel)]="formInput.departmentName">
-                        <label *ngIf="!departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)" id="validation-departmentName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Department Name.</label>
+                        <input type="text" class="form-control" name="validation-password" placeholder="Enter Name" [ngClass]="{'is-invalid': !departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)}" #departmentName="ngModel" minlength="6" required
+                            [(ngModel)]="formInput.departmentName">
+                        <label *ngIf="!departmentName.valid && (departmentName.dirty || departmentName.touched || isSubmit)" id="validation-departmentName-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid Name.</label>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Description</label>

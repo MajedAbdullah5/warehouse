@@ -855,6 +855,129 @@
                                     </div>
                                 </form>
                             </mat-tab>
+
+                            <mat-tab label="Employee Nominee">
+                                <hr class="mt-0">
+                                <form class="editForm ">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label> Nominee Name</mat-label>
+                                                        <input matInput type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label>Goverment Issued ID (NID/Passport/Driving Licence)</mat-label>
+                                                        <input matInput type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="form-group  col-md-4">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label>Issued ID Type</mat-label>
+                                                        <mat-select>
+                                                            <mat-option>NID</mat-option>
+                                                            <mat-option>Passport</mat-option>
+                                                            <mat-option>Driving Licence</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="form-group  col-md-4">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label>Relation With Nominne</mat-label>
+                                                        <mat-select>
+                                                            <mat-option>Father</mat-option>
+                                                            <mat-option>Mother</mat-option>
+                                                            <mat-option>Spouse</mat-option>
+                                                            <mat-option>Brother</mat-option>
+                                                            <mat-option>Sister</mat-option>
+                                                            <mat-option>Son</mat-option>
+                                                            <mat-option>Daughter</mat-option>
+                                                            <mat-option>Others</mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label>Mobile</mat-label>
+                                                        <input matInput placeholder="Ex. 01234567890">
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label>Maximam Persent</mat-label>
+                                                        <input matInput placeholder="Ex. 100%">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <mat-form-field class="w-100" appearance="fill">
+                                                        <mat-label>Address</mat-label>
+                                                        <textarea name="" matInput></textarea>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Nominee Photo</label>
+                                                        <input type="file" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Goverment Issued ID Photo</label>
+                                                        <input type="file" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-8 text-right">
+                                            <button type="submit" mat-raised-button color="primary"> Create </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Nominee Name</th>
+                                                    <th scope="col">Goverment Issued ID</th>
+                                                    <th scope="col">Relation</th>
+                                                    <th scope="col">Mobile</th>
+                                                    <th scope="col">Maximam Persent</th>
+                                                    <th scope="col">Address</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>NID: 1563245212251</td>
+                                                    <td>Brother</td>
+                                                    <td>01716552620</td>
+                                                    <td>100%</td>
+                                                    <td>Dhaka, Bangladesh</td>
+                                                    <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="eduEditDialog()"></i><i class="fa fa-trash f-16" (click)="eduDeleteDialog()"></i></td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </mat-tab>
+
                             <!-- <mat-tab label="example">
 
                             </mat-tab> -->

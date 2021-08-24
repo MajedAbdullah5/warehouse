@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://reqres.in/api/',
+  API_URL: 'inf/hrms/backend/',
 };
 
 /*
