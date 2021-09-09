@@ -1,0 +1,55 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <app-card title="Components List">
+                <div class="text-right pb-3">
+                    <button mat-raised-button color="primary" (click)="CreateDialog()">Add New</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover ">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Components Name</th>
+                                <th>Options</th>
+                                <th>Company</th>
+                                <th>Status</th>
+                                <!-- <th>Action</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let c of collection ; index as i;" class="operation-head">
+                                <td>{{i+1}}</td>
+                                <td>
+                                    {{c.componentname}}
+                                    <div class="operation">
+                                        <i class="fa fa-pencil-square-o f-16 p-1 mr-2 text-info"></i>
+                                        <!-- <i class="fa fa-trash f-16 p-1 text-danger" (click)="deleteDialog(c.id)"></i> -->
+                                    </div>
+                                </td>
+                                <td class="text-capitalize">
+                                    {{c.options}}
+                                </td>
+                                <td>{{c.company_id}}</td>
+                                <td>
+                                    <section class="example-section" *ngIf="c.status > 0">
+                                        <mat-slide-toggle class="example-margin" (change)="changestatus(c.id,'0')" [checked]="true" [disabled]="disabled">
+                                        </mat-slide-toggle>
+                                    </section>
+                                    <section class="example-section" *ngIf="c.status < 1">
+                                        <mat-slide-toggle class="example-margin" (change)="changestatus(c.id,'1')" [checked]="false" [disabled]="disabled">
+                                        </mat-slide-toggle>
+                                    </section>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </app-card>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
 import { DataService } from 'src/app/services/data.service';
 
 
@@ -9,7 +11,7 @@ export interface DialogData {
   type: string;
 }
 
-
+ 
 
 @Component({
   selector: 'app-employee-managment',
@@ -18,10 +20,43 @@ export interface DialogData {
 })
 export class EmployeeManagmentComponent implements OnInit {
   panelOpenState = true;
-  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
+  employeecollection = [];
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService,  private router: Router,private activeroute: ActivatedRoute) { }
   disabled = false;
   ngOnInit(): void {
+    // console.log(this.common.mycookie.company_id,"on");
+    this.showcomponents();
   }
+
+
+
+
+  showcomponents() {
+    const postdatet = {
+        'token': this.common.mycookie.token,
+        'company_id':  this.common.mycookie.company_id,
+    }
+    this.allemployee(postdatet);
+  }
+
+
+
+  allemployee(postdatet) {
+    console.log(postdatet);
+    this.dataService.post(postdatet, 'usermanagment/all_employee_list')
+        .subscribe(data => {
+            this.employeecollection = data.list;
+        });
+} 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -168,6 +203,12 @@ export class ExparienceAddEditComponent implements OnInit {
     }
   
   
+
+
+
+
+
+
     // data save function 
     save(form: any) {
       if (!form.valid) {

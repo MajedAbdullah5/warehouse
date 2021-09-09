@@ -1,0 +1,46 @@
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-card title="Users List">
+                <div class="text-right ">
+                    <p>Create New User <span class="badge bg-success px-2 cursor-pointer" (click)="openDialog()"> + Add New</span></p>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Company</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of usercollection;index as i">
+                                <td>{{i+1}}</td>
+                                <td>{{user.name}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.companyname}}</td>
+                                <td>{{user.role_name}}</td>
+                                <td>
+                                    <span *ngIf="user.status == 1" class="label badge-inverse-success">Active</span>
+                                    <span *ngIf="user.status == 0" class="label badge-inverse-danger">Inactive</span>
+                                </td>
+                                <td>
+                                    <span class="label badge-inverse-danger" (click)="EditDialog(user.id)"><i class="fa fa-pencil "></i> </span>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </app-card>
+        </div>
+    </div>
+</div>

@@ -9,3 +9,17 @@
 .pcoded[vertical-nav-type="sub-expanded"][vertical-effect="overlay"] .pcoded-overlay-box {
     z-index: 9 !important;
 }
+
+.profile-notification li {
+    padding: 0 !important;
+}
+
+.profile-notification li a {
+    display: block;
+    padding: 0.7em 20px !important;
+    cursor: pointer;
+}
+
+.ps-content {
+    height: 100% !important;
+}

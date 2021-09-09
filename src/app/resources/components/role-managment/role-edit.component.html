@@ -1,0 +1,89 @@
+<app-card title="Edit Role">
+    <div class="dialog-width">
+        <!-- <div class="row">
+            <div class="col-md-3">
+                <mat-form-field class="w-100" appearance="fill">
+                    <mat-label> Role Name</mat-label>
+                    <input matInput [(ngModel)]="roleName" type="text" readonly>
+                </mat-form-field>
+            </div>
+
+        </div> -->
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-responsive" *ngIf="compcollection.length>0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th width="50"></th>
+                                <th>Component Name</th>
+                                <th>Operations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let c of compcollection ; index as i;">
+                                <td>{{i+1}}</td>
+                                <td class="text-capitalize">
+                                    {{c.componentname}}
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_create')" *ngIf="c.permit_create == 1" [color]="'primary'" [checked]='true'>
+                                                Create
+                                            </mat-checkbox>
+
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_create')" *ngIf="c.permit_create < 1" [color]="'primary'">
+                                                Create
+                                            </mat-checkbox>
+                                        </li>
+                                        <li>
+
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_view')" *ngIf="c.permit_view == 1" [color]="'primary'" [checked]='true'>
+                                                View
+                                            </mat-checkbox>
+
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_view')" *ngIf="c.permit_view < 1" [color]="'primary'">
+                                                View
+                                            </mat-checkbox>
+                                        </li>
+                                        <li>
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_edit')" *ngIf="c.permit_edit == 1" [color]="'primary'" [checked]='true'>
+                                                Edit
+                                            </mat-checkbox>
+
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_edit')" *ngIf="c.permit_edit < 1" [color]="'primary'">
+                                                Edit
+                                            </mat-checkbox>
+                                        </li>
+                                        <li>
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_delete')" *ngIf="c.permit_delete == 1" [color]="'primary'" [checked]='true'>
+                                                Delete
+                                            </mat-checkbox>
+
+                                            <mat-checkbox (change)="checkoption($event,i,'role_permit_delete')" *ngIf="c.permit_delete < 1" [color]="'primary'">
+                                                Delete
+                                            </mat-checkbox>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-8">
+                <div *ngIf="compcollection.length > 0">
+                    <button type="submit" *ngIf="onsubmit == 0" mat-raised-button color="primary" (click)="saverole()"> Update </button>
+                </div>
+                <button *ngIf="onsubmit == 1" mat-raised-button color="primary"> Submiting... </button>
+            </div>
+        </div>
+    </div>
+
+</app-card>

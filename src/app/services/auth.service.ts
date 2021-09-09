@@ -1,37 +1,113 @@
 import { Injectable } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, throwError} from 'rxjs';
 import { Appsettings } from '../core_classes/appsettings';
-import { HttpClient ,HttpHeaders} from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { retry, catchError } from 'rxjs/operators';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  isLogin = false;
+  url = environment.API_URL;
+  apiKey = Appsettings.getApiKey();
 
-  constructor(private dataService: DataService, private http:HttpClient) { }
+  constructor(private https: HttpClient, private router: Router) {
+    
+  }
   httpHeader = {
-    headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'}),
-    // user:{"id":'1111'}
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  httpDataHeader = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    })
+  }
+    // user auth check
+    loggedIns(): boolean {
+        let c = this.getCookie('QGluZiNpbmZvdGVjaCM');
+        if(c == undefined || c == null || c == '')
+           this.logOut();
+        try {
+            for (const p in JSON.parse(atob(c))) 
+                if(p == null)
+                    this.logOut();
+        }
+        catch(e){
+            this.logOut();
+        }
+        return true;
+    }
+
+  login(data): Observable<any> {
+    const uri = this.url + 'loginapi/login/' + this.apiKey;
+    return this.https.post(uri, JSON.stringify(data), this.httpDataHeader)
+    .pipe(
+      retry(1),
+      catchError(this.httpError)
+    );
   }
 
-    apikey = Appsettings.getApiKey();
-    url =  'http://localhost/inf/hrms/backend/';
-    loggedIns(): boolean {
-      console.log (this.dataService.getCookie('user'));
-      return !!sessionStorage.getItem('bearertoken');
-    }
+  // tslint:disable-next-line: typedef
+  setCookie(cookieName, cookieValue, expireDays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (expireDays * 30 * 60 * 1000));
+    const expires = 'expires=' + d.toUTCString();
+    document.cookie = cookieName + '=' + cookieValue + ';' + expires + ';path=/';
+  }
 
-    login(data) {
-      const uri = this.url + 'loginapi/init/' + this.apikey;
-    //   this.http.post(uri,data).pipe(map(data => {})).subscribe(result => {
-    //   console.log(result);
-    // });
-    let a = this.http.post(uri, JSON.stringify(data), this.httpHeader)
-     .pipe(
-      retry(1),
-      catchError(this.dataService.httpError)
-    );
-    console.log(a,'llll');
-    return a;
+  // tslint:disable-next-line: typedef
+  getCookie(cookieName) {
+    const name = cookieName + '=';
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
     }
+    return '';
+  }
+
+  // tslint:disable-next-line: typedef
+  logOut(){
+    this.deleteAllCookies();
+    localStorage.removeItem("n_QGluZiNpbmZvdGVjaCM");
+    this.router.navigate(['login']);
+  }
+
+  // tslint:disable-next-line: typedef
+  deleteAllCookies() {
+      var cookies = document.cookie.split(";");
+      // console.log(cookies,"cookies");
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i];
+          var eqPos = cookie.indexOf("=");
+          var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+          document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      }
+  }
+
+  // tslint:disable-next-line: typedef
+  httpError(error) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client side error
+      msg = error.error.message;
+    } else {
+      // server side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(msg);
+    return throwError(msg);
+  }
+
 }

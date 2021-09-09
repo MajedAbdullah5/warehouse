@@ -1,0 +1,25 @@
+ul {
+    list-style-type: none;
+    margin-top: 4px;
+}
+
+.example-form mat-slide-toggle {
+    margin: 8px 0;
+    display: block;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: #448aff !important;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: #a7c8ff !important;
+}
+
+.example-section {
+    margin: 12px 0;
+}
+
+.example-margin {
+    margin: 0 12px;
+}

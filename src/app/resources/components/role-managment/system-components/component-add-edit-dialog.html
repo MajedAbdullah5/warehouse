@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>
+    <span *ngIf="type == 'insert'">Add New </span>
+    <span *ngIf="type == 'edit'">Edit </span> Component
+</h2>
+<hr>
+<mat-dialog-content class="mat-typography">
+    <div class="dialog-width">
+        <form [formGroup]="componentcrudform" (ngSubmit)="submitForm()" class="editForm dialog-width">
+            <div class="row justify-content-center">
+
+                <div class="col-md-12">
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Component Title</mat-label>
+                        <input matInput formControlName="componentname">
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Component Name</mat-label>
+                        <input matInput formControlName="component">
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Path</mat-label>
+                        <input matInput formControlName="componentpath">
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="fill">
+                        <mat-label>Company</mat-label>
+                        <mat-select formControlName="companyname">
+                            <mat-option *ngFor="let company of companyList" [value]="company.id">{{company.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <div class="form-group">
+                        <label class="form-label">Component Actions </label>
+                        <ul>
+                            <li>
+                                <mat-checkbox formControlName="componentcreate">
+                                    Create
+                                </mat-checkbox>
+                            </li>
+                            <li>
+                                <mat-checkbox formControlName="componentedit">
+                                    Edit
+                                </mat-checkbox>
+                            </li>
+                            <li>
+                                <mat-checkbox formControlName="componentviewall">
+                                    View All
+                                </mat-checkbox>
+                            </li>
+                            <li>
+                                <mat-checkbox formControlName="componentdelete">
+                                    Delete
+                                </mat-checkbox>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group text-right">
+                        <button type="button" mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
+                        <button type="submit" mat-raised-button color="primary">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</mat-dialog-content>

@@ -1,21 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
+  mycookie;
   aClickedEvent: EventEmitter<any> = new EventEmitter<string>();
+  aClickedEventLost: EventEmitter<any> = new EventEmitter<string>();
+  onMainEvent: EventEmitter<any> = new EventEmitter();
+  onBufferEvent: EventEmitter<any> = new EventEmitter();
   rootUrl = environment.API_URL;
   cookieName = 'something';
   showPrintHeader = true;
   today: Date = new Date();
   rolelist = [];
-  constructor() {
+  cook;
+  constructor (private auth: AuthService) {
 
-   }
+
+    this.cook = this.auth.getCookie('QGluZiNpbmZvdGVjaCM');
+
+    if (this.cook) {
+    
+      this.mycookie =  JSON.parse(atob( this.cook));
+    } else {
+      this.mycookie = '';
+    }
+  }
+
 
    AClicked(msg: string): void {
     this.aClickedEvent.emit(msg);
@@ -60,7 +76,6 @@ export class CommonService {
 
   printwindow(): boolean {
     const allmembers = document.querySelector('.memebr_tbl').innerHTML;
-
 
     const mywindow = window.open('', 'Infinity Marketing Limited', 'height=1000,width=1200');
     // tslint:disable-next-line: max-line-length

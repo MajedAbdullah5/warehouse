@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CanActivate, Router } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Meta } from '@angular/platform-browser';
+import { AuthGuard } from 'src/app/core_classes/auth-guard';
+import { AppRole } from 'src/app/core_classes/app-role';
 
 @Component({
   selector: 'app-basic-login',
@@ -9,111 +12,79 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./basic-login.component.scss']
 })
 export class BasicLoginComponent implements OnInit {
-  loader;
-  LoginForm: FormGroup;
-  userEmailControl;
-  userPasswordControl;
+  userLoginForm: FormGroup;
+  emailControl;
+  passwordControl;
+  rememberControl;
 
-  constructor(private fb: FormBuilder,private auth: AuthService, private router: Router) { 
+  loginError = false;
+  failedMessage;
+  // cookie name 
+  // @inf#infotech#
+  constructor(private fb: FormBuilder, private auth: AuthService, private permission:AppRole,  private authguard: AuthGuard, private router: Router, private meta: Meta) {
     this.buildLoginForm();
+    if(this.auth.loggedIns())
+      this.router.navigate(['/dashboard']);
+
+   }
+
+  ngOnInit(): void {
+    document.querySelector('body').setAttribute('themebg-pattern', 'theme6');
   }
 
-  ngOnInit() {
-    document.querySelector('body').setAttribute('themebg-pattern', 'theme1');
-    if (this.auth.loggedIns()) { this.router.navigate(['/dashboard']);  }
-  }
-
-  buildLoginForm() {
-    
-    this.LoginForm = this.fb.group({
-      // email:new FormControl(''),
-      // password: new FormControl('')
-      email: this.fb.control('', [
-                                  Validators.required,
-                                  Validators.minLength(4),
-                                ]),
-      password: this.fb.control('', Validators.required)
+  // tslint:disable-next-line: typedef
+  buildLoginForm(){
+    this.userLoginForm = this.fb.group({
+      email: this.fb.control('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+      password: this.fb.control('', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]),
+      remember_me: this.fb.control('')
     });
-    this.userEmailControl = this.LoginForm.get('email') as FormControl;
-    this.userPasswordControl = this.LoginForm.get('password') as FormControl;
-    console.log(this.userEmailControl,'userEmailControl');
-    console.log(this.userPasswordControl,"userPasswordControl");
+    this.emailControl = this.userLoginForm.get('email') as FormControl;
+    this.passwordControl = this.userLoginForm.get('password') as FormControl;
+    this.rememberControl = this.userLoginForm.get('remember_me') as FormControl;
   }
 
-  login() {
-  //   this.loader = true;
-    const data = this.LoginForm.value;
-    console.log(data);
-    this.auth.login(data).subscribe(
-          res => {
-            console.log(res);
-              });
-            }
-  //   // this.loginservice.login(data);
+  // tslint:disable-next-line: typedef
+  submitLoginForm() {
+    if (this.userLoginForm.valid){
+      const data = this.userLoginForm.value;
+      this.auth.login(data).subscribe(
+        res => {
+          // console.log(res.component_permissions,'data');
+          if (res.response === 200){
+            const token = res.data.token;
+            const cookieValue = res.data;
+            // const cookieValue = {
+            //   'name': res.data.name,
+            //   'email': res.data.email,
+            //   'token': token,
+            //   'status': res.data.status
+            // };
+            const component_permissions = res.component_permissions;
+            // console.log(res);
+            // console.log(cookieValue,"cookieValue 1122");
+            // console.log(token);
+            // console.log(component_permissions);
+            this.auth.setCookie('QGluZiNpbmZvdGVjaCM', btoa(JSON.stringify(cookieValue)), 1);
+            localStorage.setItem("n_QGluZiNpbmZvdGVjaCM", btoa(JSON.stringify(component_permissions)));
+            // this.auth.setCookie('n_QGluZiNpbmZvdGVjaCM', , 1);
+            // console.log(this.permission.permission());
+            // window.location.reload();
+            this.router.navigate(['dashboard']);
+          }else if (res.response === 400){
+            this.loginError = true;
+            this.failedMessage = res.message;
+          }
+        });
+    }else{
+      this.loginError = true;
+      this.failedMessage = 'Email or password field is required';
+    }
+  }
 
-  //   // this.submit = 'Submitting....';
-  //   // this.showSpin = true;
-    // this.auth.login(data).subscribe(
-    //   res => {
-    //     this.submit = 'Login';
-    //     this.showSpin = false;
-    //     const response = res['response'];
-    //     const result = res['result'];
-    //     if (response === 200) {
-    //       const token = res['bearertoken'];
-    //       const mobile = res['mobile'];
-       
-    //       const cvalue = {'username': data.username, 'bearertoken': token, 'status': 'true' }
-    //       this.loginservice.setCookie('MASN_spbT', JSON.stringify(cvalue), 1)
-    //       this.loginresult = 'success';
-    //       this.router.navigate(['dashboard']);
-    //       this.common.mycookie = cvalue;
-    //       this.common.mymobile = mobile;
-    //       this.common.user_status = res['status'];
-    //       this.common.getPin = res['getPin'];
-    //       this.common.check_access_for_profile(res['profile_data']);
-    //       this.common.getasptree = res['getasptree'];
-    //       this.common.getseniorleader = res['getseniorleader'];
-    //       this.common.getsuperupline = res['getsuperupline'];
-    //       this.common.getoutnetoffice = res['getoutnetoffice'];
-    //       localStorage.removeItem('uplinedata');
-    //       localStorage.removeItem('preuplinedata');
-    //       this.common.AClicked('Component A is clicked!!');
-
-    //       let users =  res['users'];
-    //       if ( Number(res['status']) === 1 ) {
-    //         if ( Number(users.membertype)  > 3 ) {
-    //          this.common.showTreeStrature = true
-    //         } else {
-    //          this.common.showTreeStrature = false
-    //         }
-    //       } else {
-    //       this.common.showTreeStrature = false
-    //       }
-
-
-
-
-      //   } else if (response === 400) {
-      //     this.loginError = true;
-      //     this.failedMessage = result;
-      //   }
-
-      //   if (!res) {
-      //     this.loginresult = 'error';
-      //     this.loginError = true;
-      //   } else {
-
-      //   }
-      // },
-      // // error => this.loader = false,
-      // // () => this.loader = false
-      // error => {
-      //   this.submit = 'Login';
-      //   this.showSpin = false;
-      //   this.loginError = true;
-      // }
-    // );
-  // }
+  // tslint:disable-next-line: typedef
+  loginAlertFun(){
+    this.loginError = false;
+  }
 
 }

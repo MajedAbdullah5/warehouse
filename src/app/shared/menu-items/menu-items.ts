@@ -269,7 +269,40 @@ const MENUITEMS = [
        
         ]
       },
-
+      {
+        state: 'role',
+        short_label: 'A',
+        name: 'Role Managment',
+        type: 'sub',
+        icon: 'fa fa-users',
+        children: [
+        //  {
+        //   state: 'create',
+        //   short_label: 'R',
+        //   name: 'Create New Role',
+        //   type: 'link',
+        //   icon: 'fa fa-users',
+        //   target: false
+        //  },
+         {
+          state: 'manage',
+          short_label: 'R',
+          name: 'All Roles',
+          type: 'link',
+          icon: 'fa fa-users',
+          target: false
+         },
+         {
+          state: 'components',
+          short_label: 'R',
+          name: 'Components Mange',
+          type: 'link',
+          icon: 'fa fa-users',
+          target: false
+         },
+      
+        ]
+      },
 
 
       // {

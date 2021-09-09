@@ -3,49 +3,78 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
+
                 <!-- Authentication card start -->
-                <form class="md-float-material form-material" [formGroup]="LoginForm" (ngSubmit)="login()">
-                    <div class="text-center pt-5">
-                        <h2 class="text-white">Infinity</h2>
-                        <!-- <img src="assets/images/logo.png" alt="logo.png"> -->
-                    </div>
+                <form class="md-float-material form-material" [formGroup]="userLoginForm" (ngSubmit)="submitLoginForm()">
+
                     <div class="auth-box card">
                         <div class="card-block">
                             <div class="row m-b-20">
                                 <div class="col-md-12">
-                                    <h3 class="text-center">Sign In</h3>
+                                    <div class="text-center mt-3  m-b-20">
+                                        <img src="assets/images/logo.png" alt="logo.png">
+                                    </div>
+                                    <h3 class="text-center">Login</h3>
                                 </div>
                             </div>
-                            <div class="form-group form-primary">
-                                <input type="text" formControlName="email" class="form-control" required="">
-                                <span class="form-bar"></span>
-                                <label class="float-label">Your Email Address</label>
+                            <!-- login error alert start -->
+                            <div *ngIf="loginError" class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
+                                <i class="fa fa-exclamation-triangle" aria-hidden="true"> </i> {{failedMessage ? failedMessage : ''}}
+                                <button (click)="loginAlertFun()" type="button" class="close p-2">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
                             </div>
-                            <div class="form-group form-primary">
-                                <input type="password" formControlName="password" class="form-control" required="">
-                                <span class="form-bar"></span>
-                                <label class="float-label">Password</label>
+
+                            <!-- <div *ngIf="loginFieldError" class="alert alert-warning alert-dismissible fade show mb-4" role="alert">
+                      <p class="mb-0" *ngIf="errorEmail"><i class="fa fa-envelope-o" aria-hidden="true"> </i> {{errorEmail}}</p>
+                      <p class="mb-0" *ngIf="errorPass"><i class="fa fa-key" aria-hidden="true"> </i> {{errorPass}}</p>
+                      <button (click)="loginErroraa()" type="button" class="close p-2">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div> -->
+                            <!-- login error alert end -->
+                            <div class="form-group">
+                                <mat-form-field class="w-100 full-width">
+                                    <mat-label>Email Address</mat-label>
+                                    <input type="text" matInput placeholder="Email Address" formControlName="email" required>
+                                    <mat-error class="form-control-label text-danger" *ngIf="emailControl.hasError('required')">
+                                        Email Address is required</mat-error>
+                                    <mat-error class="form-control-label text-danger" *ngIf="emailControl.hasError('pattern')">
+                                        Email Address not valid</mat-error>
+                                </mat-form-field>
                             </div>
-                            <div class="row m-t-25 text-left">
+                            <div class="form-group">
+                                <mat-form-field class="w-100 full-width">
+                                    <mat-label>Password</mat-label>
+                                    <input type="password" matInput placeholder="Password" type="password" formControlName="password" required>
+                                    <mat-error class="form-control-label text-danger " *ngIf="passwordControl.hasError('required')">
+                                        Password is required</mat-error>
+                                    <mat-error class="form-control-label text-danger " *ngIf="passwordControl.hasError('minlength')">
+                                        Password Min Length is 6</mat-error>
+                                    <mat-error class="form-control-label text-danger " *ngIf="passwordControl.hasError('maxlength')">
+                                        Password Max Length is 20</mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="row m-t-15 text-left">
                                 <div class="col-12">
                                     <div class="checkbox-fade fade-in-primary d-">
                                         <label>
-                                        <input type="checkbox" value="">
+                                        <input type="checkbox" formControlName="remember_me" value="1">
                                         <span class="cr"><i class="cr-icon fa fa-check txt-primary"></i></span>
                                         <span class="text-inverse">Remember me</span>
-                                      </label>
+                                        </label>
                                     </div>
                                     <div class="forgot-phone text-right f-right">
-                                        <!-- <a [routerLink]="['/auth/forgot']" class="text-right f-w-600"> Forgot Password?</a> -->
+                                        <a [routerLink]="['/forgot-password']" class="text-right f-w-600"> Forgot Password?</a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-t-30">
+                            <div class="row m-t-10">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary btn-md btn-block waves-light text-center m-b-20 ripple">Sign in</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </form>

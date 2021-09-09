@@ -21,6 +21,9 @@ import { AdRequisitionManagmentComponent } from './ad-requisition-managment/ad-r
 import { GradeLevelManageComponent } from './salary-matrix/grade-level-manage/grade-level-manage.component';
 import { GradeMatrixManageComponent } from './salary-matrix/grade-matrix-manage/grade-matrix-manage.component';
 import { AdNoticesManagmentComponent } from './notices/ad-notices-managment/ad-notices-managment.component';
+import { RoleCreateComponent, RoleEditComponent, RoleManagmentComponent } from './role-managment/role-managment.component';
+import { SystemComponentsComponent } from './role-managment/system-components/system-components.component';
+import { UserManagmentComponent } from './user-managment/user-managment.component';
 
 export const LayoutRoutes: Routes = [
   {
@@ -30,7 +33,7 @@ export const LayoutRoutes: Routes = [
       title: 'Quick Access',
       icon: 'fa fa-home',
       caption: '',
-      status: true
+      status: false
     }
   },
   {
@@ -122,15 +125,25 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
-  {
-    path: 'employee-managment',
-    component: EmployeeManagmentComponent,
+  
+  { 
+    path: 'employee',   
     data: {
       title: 'Employee Managment',
-      icon: 'fa fa-users',
-      caption: '',
-      status: true
-    },
+    },      
+    children: [
+      {
+        path: 'employee-managment',
+        component: EmployeeManagmentComponent,
+        data: {
+          title: 'Employee Managment',
+          icon: 'fa fa-users',
+          caption: '',
+          status: true
+        },
+      },
+      
+    ]
   },
   { 
     path: 'leave',   
@@ -322,6 +335,63 @@ export const LayoutRoutes: Routes = [
       icon: 'fa fa-users',
       target: false
      },
+    ]
+  },
+
+  { 
+    path: 'role',        
+    children: [
+      { 
+        path: 'create',      
+        component: RoleCreateComponent,
+        data: {
+          title: 'Create New Role',
+          icon: 'fa fa-home',
+          caption: '',
+          status: true
+        }
+      },
+      { 
+        path: 'manage',      
+        component: RoleManagmentComponent,
+        data: {
+          title: 'Role Managment',
+          icon: 'fa fa-home',
+          caption: '',
+          status: true
+        }
+      },
+      { 
+        path: 'edit/:id',      
+        component: RoleEditComponent,
+        data: {
+          title: 'Edit',
+          icon: 'fa fa-home',
+          caption: '',
+          status: true
+        }
+      },
+      { 
+        path: 'components',      
+        component: SystemComponentsComponent,
+        data: {
+          title: 'Component Managment',
+          icon: 'fa fa-home',
+          caption: '',
+          status: true
+        }
+      },
+      { 
+        path: 'user-managment',      
+        component: UserManagmentComponent,
+        data: {
+          title: 'User Managment',
+          icon: 'fa fa-home',
+          caption: '',
+          status: true
+        }
+      },
+     
     ]
   },
 

@@ -55,6 +55,14 @@ export class DataService {
       retry(1),
       catchError(this.httpError)
     );
+  }  
+  
+  post(resource, path): Observable<any> {
+    return this.https.post(this.apiendPoint + path + '/' + this.apikey, JSON.stringify(resource), this.httpDataHeader)
+    .pipe(
+      retry(1),
+      catchError(this.httpError)
+    );
   }
 
   postEncodedData(resource, path): Observable<any> {
@@ -95,6 +103,13 @@ export class DataService {
     return throwError(msg);
   }
 
+  setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 10 * 60 * 1000));
+    const expires = 'expires=' + d.toUTCString();
+    console.log(d.getTime());
+    // document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+  }
 
    getCookie(cname) {
     let name = cname + "=";

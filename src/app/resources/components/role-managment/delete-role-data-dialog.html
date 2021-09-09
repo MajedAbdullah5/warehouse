@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Delete</h1>
+<div mat-dialog-content>
+    <ul>
+        <li>
+            <span class="label label-warning">Warning</span>
+        </li>
+        <li>
+            You are going to delete this data permanently.
+        </li>
+    </ul>
+</div>
+<div mat-dialog-actions class="pt-4 pb-3">
+    <button mat-button mat-dialog-close>No Thanks</button>
+    <button mat-raised-button color="primary" (click)="delete()">Ok</button>
+</div>

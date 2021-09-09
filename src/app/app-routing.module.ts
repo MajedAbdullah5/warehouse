@@ -27,10 +27,6 @@ const routes: Routes = [
         loadChildren: () => import('./resources/components/default.module').then(m => m.DefaultModule)
       },
      
-      // {
-      //   path: '**',
-      //   redirectTo: 'ecommerce'
-      // }
     ],
     canActivate: [AuthGuard]
   },

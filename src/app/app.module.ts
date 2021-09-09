@@ -17,9 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CMaterialModule } from './modules/c-material/c-material.module';
 
 // Core Services
-import { AuthService } from './services/auth.service';
+// import { AuthService } from './services/---auth.service';
 import { DataService } from './services/data.service';
-import { CommonService } from './services/common.service';
+// import { CommonService } from './services/---common.service';
 
 // core class
 import { AuthGuard } from './core_classes/auth-guard';
@@ -28,6 +28,9 @@ import { AppRole } from './core_classes/app-role';
 import { BasicLoginComponent } from './resources/auth/basic-login/basic-login.component';
 import { BasicRegComponent } from './resources/auth/basic-reg/basic-reg.component';
 import { ForgotComponent } from './resources/auth/forgot/forgot.component';
+// import { CCommonService } from './services/c-common.service';
+import { CommonService } from './services/common.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,7 @@ import { ForgotComponent } from './resources/auth/forgot/forgot.component';
     AppRoutingModule,
     SharedModule,
     CMaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     MenuItems,

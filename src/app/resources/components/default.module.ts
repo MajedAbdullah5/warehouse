@@ -39,6 +39,11 @@ import { DeleteGradeDataDialog, GradeAddEditComponent, GradeDetailsDialog, Grade
 import { DeleteGradeMatrixDataDialog, GradeMatrixAddEditComponent, GradeMatrixManageComponent } from './salary-matrix/grade-matrix-manage/grade-matrix-manage.component';
 import { AdNoticesManagmentComponent, DeleteNoticesDataDialog, NoticesAddEditComponent } from './notices/ad-notices-managment/ad-notices-managment.component';
 import { EmNoticesBoardComponent } from './notices/em-notices-board/em-notices-board.component';
+import { DeleteRoleDataDialog, RoleCreateComponent, RoleEditComponent, RoleManagmentComponent } from './role-managment/role-managment.component';
+import { ComponentAddEditComponent, DeleteComponentDataDialog, SystemComponentsComponent } from './role-managment/system-components/system-components.component';
+import { DataTablesModule } from 'angular-datatables';
+import { AddUserDialogDialog, UserManagmentComponent } from './user-managment/user-managment.component';
+
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin
@@ -58,6 +63,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatDialogModule,
     MatSlideToggleModule,
     FullCalendarModule,
+    DataTablesModule
   ],   
   declarations: [
     DefaultComponent,
@@ -121,7 +127,16 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AdNoticesManagmentComponent,
     EmNoticesBoardComponent,
     NoticesAddEditComponent,
-    DeleteNoticesDataDialog
+    DeleteNoticesDataDialog,
+    RoleManagmentComponent,
+    DeleteRoleDataDialog,
+    SystemComponentsComponent,
+    DeleteComponentDataDialog,
+    ComponentAddEditComponent,
+    RoleCreateComponent,
+    RoleEditComponent,
+    UserManagmentComponent,
+    AddUserDialogDialog
   ]
 })
  
