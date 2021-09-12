@@ -25,7 +25,6 @@ export class BasicLoginComponent implements OnInit {
     this.buildLoginForm();
     if(this.auth.loggedIns())
       this.router.navigate(['/dashboard']);
-
    }
 
   ngOnInit(): void {
@@ -69,8 +68,8 @@ export class BasicLoginComponent implements OnInit {
             localStorage.setItem("n_QGluZiNpbmZvdGVjaCM", btoa(JSON.stringify(component_permissions)));
             // this.auth.setCookie('n_QGluZiNpbmZvdGVjaCM', , 1);
             // console.log(this.permission.permission());
-            // window.location.reload();
-            this.router.navigate(['dashboard']);
+            window.location.reload();
+            // this.router.navigate(['dashboard']);
           }else if (res.response === 400){
             this.loginError = true;
             this.failedMessage = res.message;

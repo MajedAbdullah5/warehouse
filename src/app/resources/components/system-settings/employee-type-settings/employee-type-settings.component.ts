@@ -1,14 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CommonService } from 'src/app/services/common.service';
 import { DataService } from 'src/app/services/data.service';
 
 
 // dialog interface data are defined here
 export interface DialogData {
-  companyname: any;
-  employeeType: any;
-  type: string;
+  id: any;
+  company_id: any;
+  name: any;
+  description: any;
+  switcher: any;
+  operation : string;
+  type : string;
 }
 
 
@@ -19,10 +24,44 @@ export interface DialogData {
   styleUrls: ['./employee-type-settings.component.scss']
 })
 export class EmployeeTypeSettingsComponent implements OnInit {
+  collection = [];
+  // constructor
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) {}
+  ngOnInit(): void {
+   
+    this.allDepartment();
+    this.common.aClickedEvent.subscribe((data: string) => {
+      this.allDepartment();
+    });
+  }
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog) { }
-  disabled = false;
-  ngOnInit(): void {}
+
+
+  allDepartment() {
+    const postdatet = {
+      'token': this.common.mycookie.token,
+    }
+
+    this.dataService.post(postdatet, 'emptmanagment/all_empt_list')
+      .subscribe(data => {
+        this.collection = data.list;
+        // console.log(this.depcollection);
+      });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   /*
@@ -31,11 +70,12 @@ export class EmployeeTypeSettingsComponent implements OnInit {
    CreateDialog() {
     const dialogRef = this.dialog.open(EmployeeTypeAddEditComponent, {
       data: {
-        companyname: '',
-        departmentName: '',
-        departmentDetails: '',
+        id: '',
+        company_id: '',
+        name: '',
+        description: '',
         switcher: '',
-        type: 'insert'
+        operation : 'create'
       }
     });
     dialogRef.afterClosed().subscribe(result => {});
@@ -50,14 +90,15 @@ export class EmployeeTypeSettingsComponent implements OnInit {
   /*
    Edit Employee Type  dialog are open by this function 
   */
-  EditDialog() {
+  EditDialog(id) {
     const dialogRef = this.dialog.open(EmployeeTypeAddEditComponent, {
       data: {
-        companyname: '',
-        departmentName: '',
-        departmentDetails: '',
-        switcher:'',
-        type: 'edit'
+        id: id,
+        company_id: '',
+        name: '',
+        description: '',
+        switcher: '',
+        operation : 'update'
       }
     });
     dialogRef.afterClosed().subscribe(result => {});
@@ -105,29 +146,79 @@ export class EmployeeTypeSettingsComponent implements OnInit {
 export class EmployeeTypeAddEditComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EmployeeTypeAddEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,private dataService: DataService) { }
-    type = this.data.type; 
-    formInput: any;
-    form: any;
-    public isSubmit: boolean;
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) { }
+    type  = this.data.operation ; 
+  formInput: any;
+  form: any;
+  public isSubmit: boolean;
+  allcompanyList = [];
+  ngOnInit() {
+    this.formInput = {
+      id: this.data.id,
+      token: this.common.mycookie.token,
+      company_id: this.data.company_id,
+      name: this.data.name,
+      description: this.data.description,
+      created_by: this.common.mycookie.id,
+      operation : this.data.operation ,
+    };
+    this.allcompanies();
+    this.singledeg(this.data.id);
+  }
 
-    ngOnInit() {
-      this.formInput = {
-        companyname: this.data.companyname,
-        employeeType: this.data.employeeType,
-      };
-      // console.log(this.data);
+
+
+
+  singledeg(id) {
+    const postdatet = {
+      'token': this.common.mycookie.token,
+      'id': id
     }
-  
-  
-    // data save function 
-    save(form: any) {
-      if (!form.valid) {
-        this.isSubmit = true;
-        return;
-      }
+    if (id) {
+      this.dataService.post(postdatet, 'emptmanagment/id_wise_type')
+        .subscribe(data => {
+          let dep = data.list[0];
+          console.log(dep);
+          this.formInput.company_id = dep.company_id;
+          this.formInput.name = dep.emp_type_name;
+          this.formInput.description = dep.emp_type_description;
+        });
+
     }
-    // function end
+  }
+
+
+
+
+
+
+
+  allcompanies() {
+    const postdatet = {
+      'token': this.common.mycookie.token,
+    }
+    this.dataService.post(postdatet, 'emptmanagment/all_company_list')
+      .subscribe(data => {
+        this.allcompanyList = data.list;
+      });
+  }
+
+
+  // data save function 
+  save(form: any) {
+    console.log(this.formInput);
+    if (form.valid) {
+      this.isSubmit = true;
+      this.dataService.post(this.formInput, 'emptmanagment/create_empt')
+      .subscribe(data => {
+        console.log(data);
+        this.dialogRef.close();
+        this.common.AClicked("componenet clicked");
+        // this.allcompanyList = data.list;
+      });
+    }
+  }
+  // function end
 
 }
  

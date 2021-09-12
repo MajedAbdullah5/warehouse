@@ -1,17 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CommonService } from 'src/app/services/common.service';
 import { DataService } from 'src/app/services/data.service';
 
 
 // dialog interface data are defined here
 export interface DialogData {
-  companyname: any;
-  designationName: any;
-  departmentName: any,
-  designationDetails: any;
+  id: any;
+  company_id: any;
+  name: any;
+  description: any;
   switcher: any;
-  type: string;
+  operation : string;
+  type : string;
 }
 
 
@@ -27,15 +29,30 @@ export class DesignationSettingsComponent implements OnInit {
   public isSubmit: boolean;
   loading = false;
   errorMessage = "";
-
+  depcollection = [];
   // constructor
-  constructor(private fb: FormBuilder, private dataService: DataService,public dialog: MatDialog) {
-    this.isSubmit = false;
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) {}
+  ngOnInit(): void {
+   
+    this.allDepartment();
+    this.common.aClickedEvent.subscribe((data: string) => {
+      this.allDepartment();
+    });
   }
 
-  // ngOnInit
-  ngOnInit() {}
 
+
+  allDepartment() {
+    const postdatet = {
+      'token': this.common.mycookie.token,
+    }
+
+    this.dataService.post(postdatet, 'degmanagment/all_department_list')
+      .subscribe(data => {
+        this.depcollection = data.list;
+        // console.log(this.depcollection);
+      });
+  }
 
 
   /*
@@ -44,12 +61,12 @@ export class DesignationSettingsComponent implements OnInit {
    openDialog() {
     const dialogRef = this.dialog.open(DesignationEditDialog, {
       data: {
-        companyname: '',
-        designationName: '',
-        departmentName: '',
-        designationDetails: '',
+        id: '',
+        company_id: '',
+        name: '',
+        description: '',
         switcher: '',
-        type: 'insert'
+        operation : 'create'
       }
     });
     dialogRef.afterClosed().subscribe(result => {});
@@ -65,15 +82,15 @@ export class DesignationSettingsComponent implements OnInit {
   /*
    Edit designation dialog are open by this function 
   */
-   EditDialog() {
+   EditDialog(id) {
     const dialogRef = this.dialog.open(DesignationEditDialog, {
       data: {
-        companyname: '',
-        designationName: '',
-        departmentName: '',
-        designationDetails: '',
-        switcher:'',
-        type: 'edit'
+        id: id,
+        company_id: '',
+        name: '',
+        description: '',
+        switcher: '',
+        operation : 'update'
       }
     });
     dialogRef.afterClosed().subscribe(result => {});
@@ -112,30 +129,76 @@ export class DesignationSettingsComponent implements OnInit {
 })
 export class DesignationEditDialog {
   constructor(public dialogRef: MatDialogRef<DesignationEditDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,private dataService: DataService){}
-  type = this.data.type; 
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) { }
+    type  = this.data.operation ; 
   formInput: any;
   form: any;
   public isSubmit: boolean;
-  errorMessage = "";
+  allcompanyList = [];
+  ngOnInit() {
+    this.formInput = {
+      id: this.data.id,
+      token: this.common.mycookie.token,
+      company_id: this.data.company_id,
+      name: this.data.name,
+      description: this.data.description,
+      created_by: this.common.mycookie.id,
+      operation : this.data.operation ,
+    };
+    this.allcompanies();
+    this.singledeg(this.data.id);
+  }
 
-    ngOnInit(){
-      this.formInput = {
-        companyname: this.data.companyname,
-        designationName: this.data.designationName,
-        departmentName: this.data.departmentName,
-        designationDetails: this.data.designationDetails,
-        switcher: this.data.switcher,
-      };
+
+
+
+  singledeg(id) {
+    const postdatet = {
+      'token': this.common.mycookie.token,
+      'id': id
     }
+    if (id) {
+      this.dataService.post(postdatet, 'degmanagment/id_wise_desg')
+        .subscribe(data => {
+          let dep = data.list[0];
+          console.log(dep);
+          this.formInput.company_id = dep.company_id;
+          this.formInput.name = dep.desg_name;
+          this.formInput.description = dep.desg_description;
+        });
 
+    }
+  }
+
+
+
+
+
+
+
+  allcompanies() {
+    const postdatet = {
+      'token': this.common.mycookie.token,
+    }
+    this.dataService.post(postdatet, 'degmanagment/all_company_list')
+      .subscribe(data => {
+        this.allcompanyList = data.list;
+      });
+  }
 
 
   // data save function 
   save(form: any) {
-    if (!form.valid) {
+    console.log(this.formInput);
+    if (form.valid) {
       this.isSubmit = true;
-      return;
+      this.dataService.post(this.formInput, 'degmanagment/create_dep')
+      .subscribe(data => {
+        console.log(data);
+        this.dialogRef.close();
+        this.common.AClicked("componenet clicked");
+        // this.allcompanyList = data.list;
+      });
     }
   }
   // function end
