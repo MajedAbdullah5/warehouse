@@ -7,33 +7,25 @@
                     <button mat-raised-button color="primary" (click)="openDialog()">Add New</button>
                 </div>
                 <div class="table-responsive">
-                    <table datatable class="table table-striped table-hover">
+                    <table datatable class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>SL</th>
                                 <th>Department Name</th>
                                 <th>Company</th>
-                                <th>Details</th>
-                                <th>Status</th>
+                                <th>Remarks</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>Accounts</td>
-                                <td>Infotech</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis debitis iste quod, culpa assumenda impedit ut! Voluptatum dolores qui fugiat!</td>
-                                <td><label class="label label-success">Success</label></td>
-                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>Human Resources (HR)</td>
-                                <td>Infotech</td>
-                                <td>Perferendis debitis iste quod, culpa assumenda impedit ut! Voluptatum dolores qui fugiat!</td>
-                                <td><label class="label label-warning">Pending</label></td>
-                                <td><i class="fa fa-pencil-square-o f-16 m-r-15" (click)="EditDialog()"></i><i class="fa fa-trash f-16" (click)="deleteDialog()"></i></td>
+                            <tr *ngFor="let dep of depcollection;index as i">
+                                <td>{{i+1}}</td>
+                                <td class="text-capitalize">{{dep.dep_name}}</td>
+                                <td class="text-capitalize">{{dep.companyname}}</td>
+                                <td>{{dep.dep_description}}</td>
+                                <td>
+                                    <span class="label badge-inverse-danger" (click)="EditDialog(dep.id)"><i class="fa fa-pencil "></i> </span>
+                                </td>
                             </tr>
 
                         </tbody>

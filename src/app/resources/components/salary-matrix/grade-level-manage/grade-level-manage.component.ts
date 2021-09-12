@@ -2,7 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA  } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
-import { DialogData } from '../../system-settings/department-settings/department-settings.component';
+
+
+export interface DialogData {
+  type : string;
+}
 
 @Component({
   selector: 'app-grade-level-manage',

@@ -7,7 +7,11 @@ import { DataService } from 'src/app/services/data.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { DialogData } from '../system-settings/department-settings/department-settings.component';
+
+
+export interface DialogData {
+  type : string;
+}
 
 export interface State {
   profile_pic: string;
