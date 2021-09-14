@@ -27,7 +27,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBottomSheetModule} from '@angular/material/bottom-sheet';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [],
   imports: [
@@ -57,7 +57,8 @@ import { MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatTreeModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatPaginatorModule
   ],
   exports: [
     MatMenuModule,
@@ -85,7 +86,8 @@ import { MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatTreeModule,
     MatProgressSpinnerModule,
     MatAutocompleteModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatPaginatorModule
   ]
 })
 export class CMaterialModule { }

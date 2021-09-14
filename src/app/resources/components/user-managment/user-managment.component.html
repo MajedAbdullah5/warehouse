@@ -5,9 +5,27 @@
                 <div class="text-right ">
                     <p>Create New User <span class="badge bg-success px-2 cursor-pointer" (click)="openDialog()"> + Add New</span></p>
                 </div>
+                <div class="row justify-content-between">
 
+                    <div class="col-md-3">
+                        <div class="table-show-entries">
+                            <label>Show Entries</label>
+                            <mat-form-field class="show-entries-selsect">
+                                <mat-select [(ngModel)]="itemPerPage" (ngModelChange)="changedPageItem($event)">
+                                    <mat-option value="10">10</mat-option>
+                                    <mat-option value="15">15</mat-option>
+                                    <mat-option value="25">25</mat-option>
+                                    <mat-option value="50">50</mat-option>
+                                    <mat-option value="100">100</mat-option>
+                                    <mat-option value="1000">All</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="table-responsive">
-                    <table datatable class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>SL</th>
@@ -20,7 +38,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of usercollection;index as i">
+
+                            <tr *ngFor="let user of usercollection | paginate: {
+                                currentPage: pagereqest,
+                                itemsPerPage: itemPerPage,
+                                totalItems: totalitem
+                                } ; index as i;">
                                 <td>{{i+1}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
@@ -38,6 +61,9 @@
 
                         </tbody>
                     </table>
+                    <p class="table-total-count">Total Records {{totalitem}}</p>
+                    <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+
                 </div>
 
             </app-card>

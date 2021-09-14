@@ -9,6 +9,8 @@ import '../../../../assets/charts/amchart/serial.js';
 import '../../../../assets/charts/amchart/light.js';
 import '../../../../assets/charts/amchart/ammap.js';
 import '../../../../assets/charts/amchart/usaLow.js';
+import { CommonService } from 'src/app/services/common.service.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,9 +32,11 @@ export class DashboardComponent implements OnInit {
 
   public secLineData: any;
   public secOption: any;
-
-  constructor() { 
+  access = false;
+  constructor(public common: CommonService, private router: Router) { 
     // console.log (this.getCookie('user'));
+    // this.access = this.common.permission("DashboardComponent",'create');
+    // console.log(this.access);
   }
 
   ngOnInit() {

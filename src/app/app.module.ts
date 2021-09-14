@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { AdminComponent } from './layout/admin/admin.component';
@@ -46,12 +46,14 @@ import { AuthService } from './services/auth.service';
     BrowserModule,
     BrowserAnimationsModule, 
     FormsModule,
+    NgxPaginationModule, 
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
     SharedModule,
     CMaterialModule,
     HttpClientModule,
+    // NgxPaginationModule,
   ],
   providers: [
     MenuItems,

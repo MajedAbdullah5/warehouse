@@ -26,25 +26,37 @@ export interface DialogData {
 })
 export class UserManagmentComponent implements OnInit {
 
+  pagereqest = 1;
+  itemPerPage = '15';
+  totalitem=0;
+
   constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService, private router: Router, private activeroute: ActivatedRoute) { }
   usercollection = [];
   ngOnInit(): void {
-    this.alluser();
+    this.all_initialData();
     this.common.aClickedEvent.subscribe((data: string) => {
-      this.alluser();
+      this.all_initialData();
     });
   }
 
 
-
-  alluser() {
+  all_initialData() {
     const postdatet = {
       'token': this.common.mycookie.token,
+      'rowperpage': this.itemPerPage,
+      'pagereqest':  this.pagereqest
     }
+    this.alluser(postdatet);
+  
+   }
 
+
+  alluser(postdatet) {
+   
     this.dataService.post(postdatet, 'usermanagment/all_user_list')
       .subscribe(data => {
         this.usercollection = data.list;
+        this.totalitem = data.totalitem;
         console.log(this.usercollection);
       });
   }
@@ -53,6 +65,22 @@ export class UserManagmentComponent implements OnInit {
 
 
 
+  getSL(i) {
+    return ( Number(this.itemPerPage) * ( Number(this.pagereqest) - 1 ) ) + i
+  }
+
+
+  changedPageItem(sevent) {
+  
+    this.pagereqest = 1;
+    this.all_initialData();
+  }
+
+  pageChange(newPage: number) {
+    this.pagereqest = newPage;
+    this.all_initialData();
+
+  }
 
 
   openDialog() {
