@@ -9,7 +9,7 @@
 
                     <div class="col-md-3">
                         <div class="table-show-entries">
-                            <label>Show Entries</label>
+                            <label class="pr-3">Show Entries </label>
                             <mat-form-field class="show-entries-selsect">
                                 <mat-select [(ngModel)]="itemPerPage" (ngModelChange)="changedPageItem($event)">
                                     <mat-option value="10">10</mat-option>
@@ -22,7 +22,13 @@
                             </mat-form-field>
                         </div>
                     </div>
-
+                    <div class="col-md-3">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Search Record.</mat-label>
+                            <input [(ngModel)]="itemSearch" (ngModelChange)="itemSearchChange($event)" matInput placeholder="Placeholder">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
