@@ -26,33 +26,67 @@ export interface DialogData {
 })
 export class UserManagmentComponent implements OnInit {
 
+  pagereqest = 1;
+  itemPerPage = '15';
+  totalitem=0;
+  itemSearch = '';
+
   constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService, private router: Router, private activeroute: ActivatedRoute) { }
   usercollection = [];
   ngOnInit(): void {
-    this.alluser();
+    this.all_initialData();
     this.common.aClickedEvent.subscribe((data: string) => {
-      this.alluser();
+      this.all_initialData();
     });
   }
 
 
-
-  alluser() {
+  all_initialData() {
     const postdatet = {
       'token': this.common.mycookie.token,
+      'rowperpage': this.itemPerPage,
+      'pagereqest':  this.pagereqest,
+      'search':  this.itemSearch
     }
+    this.alluser(postdatet);
+  
+   }
 
-    this.dataService.post(postdatet, 'usermanagment/all_user_list')
+
+  alluser(postdatet) {
+   
+    this.dataService.post(postdatet, 'usermanagment/all')
       .subscribe(data => {
         this.usercollection = data.list;
+        this.totalitem = data.totalitem;
         console.log(this.usercollection);
       });
   }
 
 
+  itemSearchChange(value) {
+    this.itemSearch = value;
+    this.all_initialData();
+  }
 
 
 
+  getSL(i) {
+    return ( Number(this.itemPerPage) * ( Number(this.pagereqest) - 1 ) ) + i
+  }
+
+
+  changedPageItem(sevent) {
+  
+    this.pagereqest = 1;
+    this.all_initialData();
+  }
+
+  pageChange(newPage: number) {
+    this.pagereqest = newPage;
+    this.all_initialData();
+
+  }
 
 
   openDialog() {
@@ -92,7 +126,7 @@ export class UserManagmentComponent implements OnInit {
 
 
 
-@Component({
+@Component({ 
   selector: 'add-user-dialog',
   templateUrl: 'add-user-dialog.html',
 })
@@ -129,7 +163,7 @@ export class AddUserDialogDialog {
       'id': id
     }
     if (id) {
-      this.dataService.post(postdatet, 'usermanagment/id_wise_user')
+      this.dataService.post(postdatet, 'usermanagment/findById')
         .subscribe(data => {
           let user = data.list[0];
           this.formInput.company_id = user.company_id;
@@ -147,7 +181,7 @@ export class AddUserDialogDialog {
     const postdatet = {
       'token': this.common.mycookie.token,
     }
-    this.dataService.post(postdatet, 'usermanagment/all_company_list')
+    this.dataService.post(postdatet, 'companymanagment/companies')
       .subscribe(data => {
         this.allcompanyList = data.list;
       });
@@ -160,7 +194,7 @@ export class AddUserDialogDialog {
       'token': this.common.mycookie.token,
       'company_id': this.formInput.company_id
     }
-    this.dataService.post(postdatet, 'usermanagment/company_wise_role_list')
+    this.dataService.post(postdatet, 'usermanagment/findByCompanyId')
       .subscribe(data => {
         this.allroleList = data.list;
       });
@@ -170,7 +204,7 @@ export class AddUserDialogDialog {
   save(form: any) {
     if (form.valid) {
       this.isSubmit = true;
-      this.dataService.post(this.formInput, 'usermanagment/create_user')
+      this.dataService.post(this.formInput, 'usermanagment/create')
         .subscribe(data => {
           console.log(data);
           this.dialogRef.close();

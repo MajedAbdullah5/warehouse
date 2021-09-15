@@ -41,9 +41,12 @@ export class RoleManagmentComponent implements OnInit {
     disabled = false;
     dataOrderBy = false;
     collection = [];
-    totalitem;
+
     pagereqest = 1;
     itemPerPage = '15';
+    totalitem = 0;
+    itemSearch = '';
+    
     searchValues: String = '';
     tokenId;
     constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) { }
@@ -51,40 +54,62 @@ export class RoleManagmentComponent implements OnInit {
     ngOnInit(): void {
         this.tokenId = this.common.mycookie.token;
         console.log(this.common.mycookie);
-        this.showPackages();
+        this.getDataHelper();
         this.common.aClickedEvent.subscribe((data:string)=>{
-            this.showPackages();
+            this.getDataHelper();
         });
     }
 
 
-    showPackages() {
-        let orderBy: string;
-        if (this.dataOrderBy === true) {
-            orderBy = 'DESC';
-        } else {
-            orderBy = 'ASC';
-        }
+    getDataHelper() {
         const postdatet = {
             'token': this.tokenId,
             'rowperpage': this.itemPerPage,
             'pagereqest': this.pagereqest,
-            'order': orderBy,
-            'search': this.searchValues
+            'search': this.itemSearch
         }
-        this.allcomponents(postdatet);
+        this.getData(postdatet);
     }
 
 
 
-    allcomponents(postdatet) {
-
-        this.dataService.post(postdatet, 'rolemanagment/all_role_list')
+    getData(postdatet) {
+        console.log(postdatet,'postdatet');
+        this.dataService.post(postdatet, 'rolemanagment/all')
             .subscribe(data => {
                 console.log(data);
                 this.collection = data.result;
+                this.totalitem = data.totalitem;
             });
     }
+
+
+
+    getSL(i) {
+        return (Number(this.itemPerPage) * (Number(this.pagereqest) - 1)) + i
+    }
+
+
+    changedPageItem(sevent) {
+
+        this.pagereqest = 1;
+        this.getDataHelper();
+    }
+
+    pageChange(newPage: number) {
+        this.pagereqest = newPage;
+        this.getDataHelper();
+
+    }
+
+    itemSearchChange(value) {
+        this.itemSearch = value;
+        this.getDataHelper();
+    }
+
+
+
+
 
     /*
      Delete Role dialog are open by this function 
@@ -340,7 +365,7 @@ export class RoleEditComponent implements OnInit {
         });
     }
 
-
+ 
     someSelect(i){
         console.log(i,'ss');
     }

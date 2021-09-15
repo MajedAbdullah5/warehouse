@@ -43,7 +43,8 @@ import { DeleteRoleDataDialog, RoleCreateComponent, RoleEditComponent, RoleManag
 import { ComponentAddEditComponent, DeleteComponentDataDialog, SystemComponentsComponent } from './role-managment/system-components/system-components.component';
 import { DataTablesModule } from 'angular-datatables';
 import { AddUserDialogDialog, UserManagmentComponent } from './user-managment/user-managment.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+// import {NgxPaginationModule} from 'ngx-pagination';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
   interactionPlugin
@@ -63,7 +64,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatDialogModule,
     MatSlideToggleModule,
     FullCalendarModule,
-    DataTablesModule
+    DataTablesModule,
+    NgxPaginationModule
   ],   
   declarations: [
     DefaultComponent,

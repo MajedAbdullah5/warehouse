@@ -25,29 +25,65 @@ export interface DialogData {
 })
 export class EmployeeTypeSettingsComponent implements OnInit {
   collection = [];
+
+  pagereqest = 1;
+  itemPerPage = '15';
+  totalitem=0;
+  itemSearch = '';
+
   // constructor
   constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) {}
   ngOnInit(): void {
-   
-    this.allDepartment();
+    this.all_initialData();
     this.common.aClickedEvent.subscribe((data: string) => {
-      this.allDepartment();
+    this.all_initialData();
     });
   }
 
-
-
-  allDepartment() {
+  all_initialData() {
     const postdatet = {
       'token': this.common.mycookie.token,
+      'rowperpage': this.itemPerPage,
+      'pagereqest':  this.pagereqest,
+      'search':  this.itemSearch,
     }
+    this.allDepartment(postdatet);
+  }
 
+
+
+  allDepartment(postdatet) {
+   
     this.dataService.post(postdatet, 'emptmanagment/all_empt_list')
       .subscribe(data => {
         this.collection = data.list;
+        this.totalitem = data.totalitem;
         // console.log(this.depcollection);
       });
   }
+
+  getSL(i) {
+    return ( Number(this.itemPerPage) * ( Number(this.pagereqest) - 1 ) ) + i
+  }
+
+
+  changedPageItem(sevent) {
+  
+    this.pagereqest = 1;
+    this.all_initialData();
+  }
+
+  pageChange(newPage: number) {
+    this.pagereqest = newPage;
+    this.all_initialData();
+
+  }
+
+  itemSearchChange(value) {
+    this.itemSearch = value;
+    this.all_initialData();
+  }
+
 
 
 

@@ -49,27 +49,13 @@ export class BasicLoginComponent implements OnInit {
       const data = this.userLoginForm.value;
       this.auth.login(data).subscribe(
         res => {
-          // console.log(res.component_permissions,'data');
           if (res.response === 200){
             const token = res.data.token;
             const cookieValue = res.data;
-            // const cookieValue = {
-            //   'name': res.data.name,
-            //   'email': res.data.email,
-            //   'token': token,
-            //   'status': res.data.status
-            // };
             const component_permissions = res.component_permissions;
-            // console.log(res);
-            // console.log(cookieValue,"cookieValue 1122");
-            // console.log(token);
-            // console.log(component_permissions);
             this.auth.setCookie('QGluZiNpbmZvdGVjaCM', btoa(JSON.stringify(cookieValue)), 1);
             localStorage.setItem("n_QGluZiNpbmZvdGVjaCM", btoa(JSON.stringify(component_permissions)));
-            // this.auth.setCookie('n_QGluZiNpbmZvdGVjaCM', , 1);
-            // console.log(this.permission.permission());
             window.location.reload();
-            // this.router.navigate(['dashboard']);
           }else if (res.response === 400){
             this.loginError = true;
             this.failedMessage = res.message;

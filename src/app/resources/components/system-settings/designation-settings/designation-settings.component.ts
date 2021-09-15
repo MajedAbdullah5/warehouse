@@ -30,30 +30,75 @@ export class DesignationSettingsComponent implements OnInit {
   loading = false;
   errorMessage = "";
   depcollection = [];
+//pagination start
+
+  pagereqest = 1;
+  itemPerPage = '15';
+  totalitem=0;
+  itemSearch = '';
+
+//end pagination
   // constructor
   constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) {}
   ngOnInit(): void {
    
-    this.allDepartment();
+    this.all_initialData();
     this.common.aClickedEvent.subscribe((data: string) => {
-      this.allDepartment();
+      this.all_initialData();
     });
   }
 
 
 
-  allDepartment() {
-    const postdatet = {
-      'token': this.common.mycookie.token,
-    }
+  allDepartment(postdatet) {
+
 
     this.dataService.post(postdatet, 'degmanagment/all_department_list')
       .subscribe(data => {
         this.depcollection = data.list;
+        this.totalitem = data.totalitem;
         // console.log(this.depcollection);
       });
   }
 
+  
+  all_initialData() {
+
+    const postdatet = {
+      'token': this.common.mycookie.token,
+      'rowperpage': this.itemPerPage,
+      'pagereqest':  this.pagereqest,
+      'search':  this.itemSearch
+    }
+    this.allDepartment(postdatet);
+  
+   }
+
+  /*
+  server side comon scription
+  */
+
+  getSL(i) {
+    return ( Number(this.itemPerPage) * ( Number(this.pagereqest) - 1 ) ) + i
+  }
+
+
+  changedPageItem(sevent) {
+  
+    this.pagereqest = 1;
+    this.all_initialData();
+  }
+
+  pageChange(newPage: number) {
+    this.pagereqest = newPage;
+    this.all_initialData();
+
+  }
+  
+  itemSearchChange(value) {
+    this.itemSearch = value;
+    this.all_initialData();
+  }
 
   /*
    Add designation dialog are open by this function 

@@ -319,24 +319,24 @@ export const LayoutRoutes: Routes = [
   },
 
 
-  {
-    path: 'visitor-managment',            
-    component: AdRequisitionManagmentComponent,
-    data: [
-     {
-      title: 'My Requisition',
-      type: 'link',
-      icon: 'fa fa-users',
-      target: false
-     },
-     {
-      title: 'requisition Manage',
-      type: 'link',
-      icon: 'fa fa-users',
-      target: false
-     },
-    ]
-  },
+  // {
+  //   path: 'visitor-managment',            
+  //   component: AdRequisitionManagmentComponent,
+  //   data: [
+  //    {
+  //     title: 'My Requisition',
+  //     type: 'link',
+  //     icon: 'fa fa-users',
+  //     target: false
+  //    },
+  //    {
+  //     title: 'requisition Manage',
+  //     type: 'link',
+  //     icon: 'fa fa-users',
+  //     target: false
+  //    },
+  //   ]
+  // },
 
   { 
     path: 'role',        

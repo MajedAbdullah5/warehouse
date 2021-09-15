@@ -3,6 +3,7 @@ import { animate, AUTO_STYLE, state, style, transition, trigger } from '@angular
 import { MenuItems } from '../../shared/menu-items/menu-items';
 import { AuthGuard } from 'src/app/core_classes/auth-guard';
 import { AuthService } from 'src/app/services/auth.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
     selector: 'app-admin',
@@ -147,7 +148,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     public config: any;
     public searchInterval: any;
-
+   
     scroll = (): void => {
         const scrollPosition = window.pageYOffset;
         if (scrollPosition > 56) {
@@ -167,7 +168,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         }
     };
 
-    constructor(public menuItems: MenuItems, private auth: AuthService, private authguard: AuthGuard) {
+    constructor(public menuItems: MenuItems, private auth: AuthService, private authguard: AuthGuard,public common: CommonService) {
         this.animateSidebar = '';
         this.navType = 'st2';
         this.themeLayout = 'vertical';
@@ -225,27 +226,14 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.setMenuAttributes(this.windowWidth);
         this.setHeaderAttributes(this.windowWidth);
 
-        // dark theme
-        /*this.setLayoutType('dark');*/
-
-        // light-dark
-        /*this.setLayoutType('dark');
-        this.setNavBarTheme('themelight1');*/
-
-        // dark-light theme
-        /*this.setNavBarTheme('theme1');*/
-
-        // box layout
-        /*this.setHeaderPosition();
-        this.setSidebarPosition();
-        this.setVerticalLayout();*/
-
-        // sidebar img
-        /*this.setLayoutType('img');*/
+   
         this.permitedroute();
     }
-
+    username = "";
+    profilepic = "assets/images/avatar-2.jpg";
     ngOnInit() {
+        this.username=this.common.mycookie.name;
+        this.profilepic=this.common.mycookie.profilepic;
         this.setBackgroundPattern('theme1');
     }
 

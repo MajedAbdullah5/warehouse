@@ -2,8 +2,8 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/data.service';
-import { CommonService } from 'src/app/services/common.service';
-
+import { CommonService} from 'src/app/services/common.service';
+import { CanActivate, Router } from '@angular/router';
 // dialog interface data are defined here
 export interface DialogData {
   id: any;
@@ -25,31 +25,71 @@ export class DepartmentSettingsComponent implements OnInit {
   loading = true;
   errorMessage = "";
   depcollection = [];
+
+  pagereqest = 1;
+  itemPerPage = '15';
+  totalitem=0;
+  itemSearch = '';
+  access = 0;
   // constructor
-  constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) {}
+  constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService, private router: Router) {
+    
+  }
   ngOnInit(): void {
-   
-    this.allDepartment();
+    this.all_initialData();
+  
     this.common.aClickedEvent.subscribe((data: string) => {
-      this.allDepartment();
+      this.all_initialData();
     });
   }
 
 
+  all_initialData() {
+   
+       const postdatet = {
+         'token': this.common.mycookie.token,
+         'rowperpage': this.itemPerPage,
+         'pagereqest':  this.pagereqest,
+         'search':  this.itemSearch
+       }
+       this.allDepartment(postdatet);
+      }
 
-  allDepartment() {
-    const postdatet = {
-      'token': this.common.mycookie.token,
-    }
+
+  allDepartment(postdatet) {
 
     this.dataService.post(postdatet, 'depmanagment/all_department_list')
       .subscribe(data => {
         this.depcollection = data.list;
-        console.log(this.depcollection);
+        this.totalitem = data.totalitem;
       });
   }
 
+  getSL(i) {
+    return ( Number(this.itemPerPage) * ( Number(this.pagereqest) - 1 ) ) + i
+  }
 
+
+  changedPageItem(sevent) {
+    this.pagereqest = 1;
+    this.all_initialData();
+  }
+
+  pageChange(newPage: number) {
+    this.pagereqest = newPage;
+    this.all_initialData();
+  }
+
+  itemSearchChange(value) {
+    this.itemSearch = value;
+    this.all_initialData();
+  }
+
+
+permission(type){
+  this.access = this.common.permission("DepartmentSettingsComponent",type);
+  return this.access;
+}
 
   
 

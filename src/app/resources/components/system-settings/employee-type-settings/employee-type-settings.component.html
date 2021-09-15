@@ -6,8 +6,32 @@
                 <div class="text-right pb-3">
                     <button mat-raised-button color="primary" (click)="CreateDialog()">Add New</button>
                 </div>
+                <div class="row justify-content-between">
+                    <div class="col-md-3">
+                        <div class="table-show-entries">
+                            <label class="pr-2">Show Entries </label>
+                            <mat-form-field class="show-entries-selsect">
+                                <mat-select [(ngModel)]="itemPerPage" (ngModelChange)="changedPageItem($event)">
+                                    <mat-option value="10">10</mat-option>
+                                    <mat-option value="15">15</mat-option>
+                                    <mat-option value="25">25</mat-option>
+                                    <mat-option value="50">50</mat-option>
+                                    <mat-option value="100">100</mat-option>
+                                    <mat-option value="1000">All</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Search Record. </mat-label>
+                            <input [(ngModel)]="itemSearch" (ngModelChange)="itemSearchChange($event)" matInput placeholder="Placeholder">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
                 <div class="table-responsive">
-                    <table datatable class="table table-bordered table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>SL</th>
@@ -18,7 +42,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let dep of collection;index as i">
+                            <tr *ngFor="let dep of collection | paginate: {
+                            currentPage: pagereqest,
+                            itemsPerPage: itemPerPage,
+                            totalItems: totalitem
+                            } ; index as i;">
                                 <td>{{i+1}}</td>
                                 <td class="text-capitalize">{{dep.emp_type_name}}</td>
                                 <td class="text-capitalize">{{dep.companyname}}</td>
@@ -29,6 +57,9 @@
                             </tr>
                         </tbody>
                     </table>
+                    <p class="table-total-count">Total Records {{totalitem}}</p>
+                    <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
+
                 </div>
             </app-card>
         </div>

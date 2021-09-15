@@ -59,7 +59,7 @@
                                     <div class="media">
                                         <img class="d-flex align-self-center img-radius" src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <h5 class="notification-user">Alexandra Daddario</h5>
+                                            <h5 class="notification-user">{{username}}</h5>
                                             <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
                                             <span class="notification-time">30 minutes ago</span>
                                         </div>
@@ -70,9 +70,9 @@
                         </li>
                         <li (clickOutside)="notificationOutsideClick('profile')" class="user-profile header-notification ripple light" [ngClass]="profileNotificationClass" (click)="toggleProfileNotification()">
                             <a href="javascript:">
-                                <img src="assets/images/avatar-2.jpg" class="img-radius" alt="User-Profile-Image" style="height: 40px;
-                                object-fit: cover;">
-                                <span>Alexandra Daddario</span>
+                                <!-- <img src="{{profilepic}}" class="img-radius" alt="User-Profile-Image" style="height: 40px; -->
+                                <!-- object-fit: cover;"> -->
+                                <span>{{username}}</span>
                                 <i class="icon-angle-down"></i>
                             </a>
                             <ul [@notificationBottom]="profileNotification" class="show-notification profile-notification" [ngClass]="profileNotificationClass">
