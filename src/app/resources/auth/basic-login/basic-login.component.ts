@@ -56,7 +56,7 @@ export class BasicLoginComponent implements OnInit {
             this.auth.setCookie('QGluZiNpbmZvdGVjaCM', btoa(JSON.stringify(cookieValue)), 1);
             localStorage.setItem("n_QGluZiNpbmZvdGVjaCM", btoa(JSON.stringify(component_permissions)));
             window.location.reload();
-          }else if (res.response === 400){
+          }else if (res.response == 400){
             this.loginError = true;
             this.failedMessage = res.message;
           }

@@ -23,7 +23,7 @@ import { GradeMatrixManageComponent } from './salary-matrix/grade-matrix-manage/
 import { AdNoticesManagmentComponent } from './notices/ad-notices-managment/ad-notices-managment.component';
 import { RoleCreateComponent, RoleEditComponent, RoleManagmentComponent } from './role-managment/role-managment.component';
 import { SystemComponentsComponent } from './role-managment/system-components/system-components.component';
-import { UserManagmentComponent } from './user-managment/user-managment.component';
+import { UserManagmentComponent, UserRoleEditComponent } from './user-managment/user-managment.component';
 
 export const LayoutRoutes: Routes = [
   {
@@ -386,6 +386,16 @@ export const LayoutRoutes: Routes = [
         component: UserManagmentComponent,
         data: {
           title: 'User Managment',
+          icon: 'fa fa-home',
+          caption: '',
+          status: true
+        }
+      },
+      { 
+        path: 'individual-user-role/:id',      
+        component: UserRoleEditComponent,
+        data: {
+          title: 'Individual User Role',
           icon: 'fa fa-home',
           caption: '',
           status: true

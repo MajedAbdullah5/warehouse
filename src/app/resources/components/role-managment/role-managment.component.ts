@@ -46,7 +46,8 @@ export class RoleManagmentComponent implements OnInit {
     itemPerPage = '15';
     totalitem = 0;
     itemSearch = '';
-    
+    access = 0;
+
     searchValues: String = '';
     tokenId;
     constructor(private fb: FormBuilder, public dialog: MatDialog, private dataService: DataService, public common: CommonService) { }
@@ -84,6 +85,13 @@ export class RoleManagmentComponent implements OnInit {
     }
 
 
+
+
+
+    permission(type){
+        this.access = this.common.permission("RoleManagmentComponent",type);
+        return this.access;
+      }
 
     getSL(i) {
         return (Number(this.itemPerPage) * (Number(this.pagereqest) - 1)) + i
@@ -303,11 +311,11 @@ export class RoleEditComponent implements OnInit {
             'company_id':  this.activeroute.snapshot.paramMap.get("company"),
             'roleid': this.activeroute.snapshot.paramMap.get("id"),
         }
-        // console.log(postdatet,"postdatet edit");
+        
         this.allcomponents(postdatet);
     }
 
- 
+
 
     allcomponents(postdatet) {
         this.dataService.post(postdatet, 'rolemanagment/edit_role_list')
@@ -330,15 +338,8 @@ export class RoleEditComponent implements OnInit {
                         "role_permit_edit":element.permit_edit,
                         "role_permit_delete":element.permit_delete,
                     };
-                    // let options = {};
-                    // element.options.split(',').forEach(e => {
-                    //      options["role_permit_"+e.trim()] = false;
-                    // });
-                    //  op['options'] = options;
-                    //  console.log(i);
                      this.operation.push(op);
                 });
-                // console.log(this.operation);
             });
     } 
 

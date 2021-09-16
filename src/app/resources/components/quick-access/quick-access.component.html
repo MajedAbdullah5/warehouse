@@ -1,4 +1,4 @@
-<div class="page-body">
+<div class="page-body" *ngIf="permission('view')">
     <div class="row">
         <div class="col-sm-6">
 
@@ -54,4 +54,18 @@
             </app-card>
         </div>
     </div>
+</div>
+
+
+
+<div class="page-body" *ngIf="permission('view') == 0">
+    <app-card>
+        <div class="row justify-content-center py-5">
+            <div class="col-sm-4 text-center">
+                <img style="max-width: 100%;" src="./../../../../../assets/images/500.jpg" alt="">
+                <h2 class="pt-5 text-danger">Sorry man.</h2>
+                <h4 class="font-weight-light">You are unauthorized to access this data.</h4>
+            </div>
+        </div>
+    </app-card>
 </div>
