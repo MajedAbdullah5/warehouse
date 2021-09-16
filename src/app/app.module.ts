@@ -31,7 +31,7 @@ import { ForgotComponent } from './resources/auth/forgot/forgot.component';
 // import { CCommonService } from './services/c-common.service';
 import { CommonService } from './services/common.service';
 import { AuthService } from './services/auth.service';
-
+import { ToastyModule } from 'ng2-toasty';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +53,7 @@ import { AuthService } from './services/auth.service';
     SharedModule,
     CMaterialModule,
     HttpClientModule,
+    ToastyModule
     // NgxPaginationModule,
   ],
   providers: [

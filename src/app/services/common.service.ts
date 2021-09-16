@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
+import { ToastData, ToastOptions, ToastyService } from 'ng2-toasty';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,10 @@ export class CommonService {
     today: Date = new Date();
     rolelist = [];
     cook;
-    constructor(private auth: AuthService) {
+      // tosty options
+    position = 'top-right';
+
+    constructor(private auth: AuthService,private toastyService: ToastyService ) {
 
 
         this.cook = this.auth.getCookie('QGluZiNpbmZvdGVjaCM');
@@ -193,4 +197,36 @@ export class CommonService {
         return monthname;
     }
 
+
+// tslint:disable-next-line: typedef
+openToasty(title: string, message: string, type: string) {
+    // tslint:disable-next-line: max-line-length
+    const options = { title: title, msg: message, timeout: 5000, theme: 'default', position: 'top-right', type: type, closeOther: true, showClose: true};
+    if (options.closeOther) {
+      this.toastyService.clearAll();
+    }
+    this.position = options.position ? options.position : this.position;
+    const toastOptions: ToastOptions = {
+      title: options.title,
+      msg: options.msg,
+      showClose: options.showClose,
+      timeout: options.timeout,
+      theme: options.theme,
+      onAdd: (toast: ToastData) => {
+        /* added */
+      },
+      onRemove: (toast: ToastData) => {
+        /* removed */
+      }
+    };
+
+    switch (options.type) {
+      case 'default': this.toastyService.default(toastOptions); break;
+      case 'info': this.toastyService.info(toastOptions); break;
+      case 'success': this.toastyService.success(toastOptions); break;
+      case 'wait': this.toastyService.wait(toastOptions); break;
+      case 'error': this.toastyService.error(toastOptions); break;
+      case 'warning': this.toastyService.warning(toastOptions); break;
+    }
+  }
 }

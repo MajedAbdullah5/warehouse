@@ -32,11 +32,9 @@ export class DashboardComponent implements OnInit {
 
   public secLineData: any;
   public secOption: any;
-  access = false;
+  access = 0;
   constructor(public common: CommonService, private router: Router) { 
-    // console.log (this.getCookie('user'));
-    // this.access = this.common.permission("DashboardComponent",'create');
-    // console.log(this.access);
+  
   }
 
   ngOnInit() {
@@ -194,6 +192,15 @@ export class DashboardComponent implements OnInit {
       
     }, 75);
   }
+
+
+
+
+  permission(type){
+    this.access = this.common.permission("DashboardComponent",type);
+    return this.access;
+  }
+
 
 }
 

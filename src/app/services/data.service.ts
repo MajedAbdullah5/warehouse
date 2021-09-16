@@ -35,10 +35,7 @@ export class DataService {
   }
 
   getAll(path: string): Observable<any> {
-    let rn = this.https.get(this.apiendPoint + path + '/' + this.apikey);
-    console.log(rn);
-    return rn;
-    // return this.https.get(this.apiendPoint + path + '/' + this.apikey)
+    return this.https.get(this.apiendPoint + path + '/' + this.apikey);
   }
 
   getdata(id, path): Observable<any> {
@@ -99,7 +96,6 @@ export class DataService {
       // server side error
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(msg);
     return throwError(msg);
   }
 
@@ -107,7 +103,6 @@ export class DataService {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 10 * 60 * 1000));
     const expires = 'expires=' + d.toUTCString();
-    console.log(d.getTime());
     // document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
   }
 

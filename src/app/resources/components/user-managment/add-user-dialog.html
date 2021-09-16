@@ -19,6 +19,15 @@
                         <label *ngIf="!company_id.valid && (company_id.dirty || company_id.touched || isSubmit)" id="validation-company_id-error" class="error jquery-validation-error small form-text invalid-feedback">The company selection should be required.</label>
                     </div>
                     <div class="form-group">
+                        <label class="form-label">Permission Type</label>
+                        <mat-radio-group name="permissiontype" class="form-control-plaintext" color="primary" aria-label="Select an option" (change)="changeRoleType($event)" [ngClass]="{'is-invalid': !permissiontype.valid && (permissiontype.dirty || permissiontype.touched || isSubmit)}"
+                            #permissiontype="ngModel" [(ngModel)]="formInput.permissiontype" required>
+                            <mat-radio-button value="1" [checked]="permissiontype" class="pr-3">By Role</mat-radio-button>
+                            <mat-radio-button value="0" [checked]="permissiontype">Individual</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div class="form-group" *ngIf="formInput.permissiontype == 1">
                         <label class="form-label">Role</label>
                         <select class="form-control" name="role_id" [ngClass]="{'is-invalid': !role_id.valid && (role_id.dirty || role_id.touched || isSubmit)}" #role_id="ngModel" required [(ngModel)]="formInput.role_id">
                             <option value selected>Choose Role</option>
@@ -32,7 +41,6 @@
                         <label class="form-label">Name</label>
                         <input type="text" class="form-control" name="validation-password" placeholder="Enter  Name" [ngClass]="{'is-invalid': !name.valid && (name.dirty || name.touched || isSubmit)}" #name="ngModel" minlength="3" required [(ngModel)]="formInput.name">
                         <label *ngIf="!name.valid && (name.dirty || name.touched || isSubmit)" id="validation-name-error" class="error jquery-validation-error small form-text invalid-feedback">Please enter a valid name. minlength 3 character</label>
-
                     </div>
                     <!-- <div class="form-group">
                         <label class="form-label">mobile</label>
@@ -49,6 +57,11 @@
                         <input class="form-control" name="validation-address" [ngClass]="{'is-invalid': !password.valid && (password.dirty || password.touched || isSubmit)}" #password="ngModel" required [(ngModel)]="formInput.password">
                         <label *ngIf="!password.valid && (password.dirty || password.touched || isSubmit)" id="validation-password-error" class="error jquery-validation-error small form-text invalid-feedback">The password field should be required.</label>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label form-control-plaintext">Status</label>
+                        <mat-slide-toggle name="userStatus" [(ngModel)]="formInput.status" (change)="changeStatus($event)">Slide me!</mat-slide-toggle>
+                    </div>
+
                     <div class="form-group text-right">
                         <button mat-raised-button mat-dialog-close class="mr-2" color="warn">Cancel</button>
                         <button type="submit" mat-raised-button color="primary" (click)="save(validationForm)"> {{type|titlecase}}</button>

@@ -42,7 +42,7 @@ import { EmNoticesBoardComponent } from './notices/em-notices-board/em-notices-b
 import { DeleteRoleDataDialog, RoleCreateComponent, RoleEditComponent, RoleManagmentComponent } from './role-managment/role-managment.component';
 import { ComponentAddEditComponent, DeleteComponentDataDialog, SystemComponentsComponent } from './role-managment/system-components/system-components.component';
 import { DataTablesModule } from 'angular-datatables';
-import { AddUserDialogDialog, UserManagmentComponent } from './user-managment/user-managment.component';
+import { AddUserDialogDialog, UserManagmentComponent, UserRoleEditComponent } from './user-managment/user-managment.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 // import {NgxPaginationModule} from 'ngx-pagination';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -138,7 +138,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     RoleCreateComponent,
     RoleEditComponent,
     UserManagmentComponent,
-    AddUserDialogDialog
+    AddUserDialogDialog,
+    UserRoleEditComponent
   ]
 })
  

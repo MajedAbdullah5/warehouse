@@ -84,6 +84,9 @@ import { CommonService } from 'src/app/services/common.service';
     ]
 })
 export class AdminComponent implements OnInit, OnDestroy {
+     // tosty data start
+    position = 'top-right';
+
     public animateSidebar: string;
     public allmenuitems: any;
     public navType: string;
@@ -148,6 +151,7 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     public config: any;
     public searchInterval: any;
+
    
     scroll = (): void => {
         const scrollPosition = window.pageYOffset;

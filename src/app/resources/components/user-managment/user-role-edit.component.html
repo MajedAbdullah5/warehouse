@@ -1,25 +1,5 @@
-<app-card title="Create New Role">
+<app-card title="Edit Role">
     <div class="dialog-width">
-        <div class="row">
-            <div class="col-md-3">
-                <mat-form-field class="w-100" appearance="fill">
-                    <mat-label> Role Name</mat-label>
-                    <input matInput [(ngModel)]="roleName" type="text">
-                </mat-form-field>
-            </div>
-            <div class="form-group  col-md-3">
-                <mat-form-field class="w-100" appearance="fill">
-                    <mat-label>Company</mat-label>
-                    <mat-select [(ngModel)]="selectCompany" (ngModelChange)="getcomponent($event)">
-                        <mat-option value="1">Infotech</mat-option>
-                        <mat-option value="2">Maslow</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-
-        </div>
-
-
         <div class="row">
             <div class="col-sm-12">
                 <div class="table-responsive" *ngIf="compcollection.length>0">
@@ -38,7 +18,6 @@
                                     {{c.componentname}}
                                 </td>
                                 <td>
-
                                     <mat-checkbox class="pr-3" (change)="checkoption($event,i,'role_permit_create')" *ngIf="c.permit_create == 1" [color]="'primary'" [checked]='true'>
                                         Create
                                     </mat-checkbox>
@@ -79,12 +58,11 @@
         <div class="form-group row">
             <div class="col-sm-8">
                 <div *ngIf="compcollection.length > 0">
-                    <button type="submit" *ngIf="onsubmit == 0" mat-raised-button color="primary" (click)="saverole()"> Create </button>
+                    <button type="submit" *ngIf="onsubmit == 0" mat-raised-button color="primary" (click)="saverole()"> Update </button>
                 </div>
                 <button *ngIf="onsubmit == 1" mat-raised-button color="primary"> Submiting... </button>
             </div>
         </div>
-
     </div>
 
 </app-card>

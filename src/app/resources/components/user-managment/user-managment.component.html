@@ -1,4 +1,4 @@
-<div class="page-body">
+<div class="page-body" *ngIf="permission('view')">
     <div class="row">
         <div class="col-sm-12">
             <app-card title="Users List">
@@ -9,7 +9,7 @@
 
                     <div class="col-md-3">
                         <div class="table-show-entries">
-                            <label class="pr-3">Show Entries </label>
+                            <label class="pr-2">Show Entries </label>
                             <mat-form-field class="show-entries-selsect">
                                 <mat-select [(ngModel)]="itemPerPage" (ngModelChange)="changedPageItem($event)">
                                     <mat-option value="10">10</mat-option>
@@ -22,13 +22,27 @@
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <mat-form-field class="w-100" appearance="outline">
+                    <div class="col-md-4">
+                        <div class="table-show-entries">
+                            <label class="pr-2">Permission Type </label>
+                            <mat-form-field class="show-entries-selsect">
+                                <mat-select [(ngModel)]="permissionType" (ngModelChange)="changedPermissionType($event)">
+                                    <mat-option value="0">All</mat-option>
+                                    <mat-option value="1">IN Role</mat-option>
+                                    <mat-option value="2">Individual</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ">
+                        <mat-form-field class="w-100 search" appearance="outline">
                             <mat-label>Search Record.</mat-label>
                             <input [(ngModel)]="itemSearch" (ngModelChange)="itemSearchChange($event)" matInput placeholder="Placeholder">
                             <mat-icon matSuffix>search</mat-icon>
                         </mat-form-field>
+                        <p><small>Search by user name & company.</small></p>
                     </div>
+
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover">
@@ -51,16 +65,20 @@
                                 totalItems: totalitem
                                 } ; index as i;">
                                 <td>{{i+1}}</td>
-                                <td>{{user.name}}</td>
+                                <td class="text-capitalize">{{user.name}}</td>
                                 <td>{{user.email}}</td>
-                                <td>{{user.companyname}}</td>
-                                <td>{{user.role_name}}</td>
+                                <td class="text-capitalize">{{user.companyname}}</td>
+                                <td>
+                                    <span *ngIf="user.roleid != null">{{user.role_name}}</span>
+                                    <span *ngIf="user.roleid == null" class="text-warning">Individual</span>
+                                </td>
                                 <td>
                                     <span *ngIf="user.status == 1" class="label badge-inverse-success">Active</span>
                                     <span *ngIf="user.status == 0" class="label badge-inverse-danger">Inactive</span>
                                 </td>
                                 <td>
-                                    <span class="label badge-inverse-danger" (click)="EditDialog(user.id)"><i class="fa fa-pencil "></i> </span>
+                                    <span class="label badge-inverse-primary" (click)="EditDialog(user.id)"><i class="fa fa-pencil "></i> </span>
+                                    <a *ngIf="user.roleid == null" class="label badge-inverse-primary" [routerLink]="['/role/individual-user-role',user.id]"><i class="fa fa-pencil "></i> Edit Permissions </a>
                                 </td>
                             </tr>
 
@@ -75,4 +93,18 @@
             </app-card>
         </div>
     </div>
+</div>
+
+
+
+<div class="page-body" *ngIf="permission('view') == 0">
+    <app-card>
+        <div class="row justify-content-center py-5">
+            <div class="col-sm-4 text-center">
+                <img style="max-width: 100%;" src="./../../../../../assets/images/500.jpg" alt="">
+                <h2 class="pt-5 text-danger">Sorry man.</h2>
+                <h4 class="font-weight-light">You are unauthorized to access this data.</h4>
+            </div>
+        </div>
+    </app-card>
 </div>

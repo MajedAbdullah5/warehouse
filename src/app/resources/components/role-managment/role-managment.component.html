@@ -1,9 +1,9 @@
-<div class="page-body">
+<div class="page-body" *ngIf="permission('view')">
     <div class="row">
         <div class="col-sm-12">
 
             <app-card title="Role List">
-                <div class="text-right pb-3">
+                <div class="text-right pb-3" *ngIf="permission('create')">
                     <a mat-raised-button [routerLink]="['/role/create']" color="primary">Add New</a>
                 </div>
                 <div class="row justify-content-between">
@@ -55,7 +55,7 @@
                                     <label *ngIf="data.status < 1" class="label label-danger">Inacvive</label>
                                 </td>
                                 <td>
-                                    <a [routerLink]="['/role/edit/',data.id]"><i class="fa fa-pencil-square-o f-16 p-1 mr-2 text-info"></i></a>
+                                    <a *ngIf="permission('edit')" [routerLink]="['/role/edit/',data.id]"><i class="fa fa-pencil-square-o f-16 p-1 mr-2 text-info"></i></a>
                                     <!-- <i class="fa fa-trash f-16 p-1 text-danger" (click)="deleteDialog(data.id)"></i> -->
                                 </td>
                             </tr>
@@ -70,4 +70,18 @@
             </app-card>
         </div>
     </div>
+</div>
+
+
+
+<div class="page-body" *ngIf="permission('view') == 0">
+    <app-card>
+        <div class="row justify-content-center py-5">
+            <div class="col-sm-4 text-center">
+                <img style="max-width: 100%;" src="./../../../../../assets/images/500.jpg" alt="">
+                <h2 class="pt-5 text-danger">Sorry man.</h2>
+                <h4 class="font-weight-light">You are unauthorized to access this data.</h4>
+            </div>
+        </div>
+    </app-card>
 </div>
