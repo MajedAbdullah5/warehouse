@@ -151,8 +151,6 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     public config: any;
     public searchInterval: any;
-
-   
     scroll = (): void => {
         const scrollPosition = window.pageYOffset;
         if (scrollPosition > 56) {
@@ -171,7 +169,6 @@ export class AdminComponent implements OnInit, OnDestroy {
             this.sidebarFixedNavHeight = '';
         }
     };
-
     constructor(public menuItems: MenuItems, private auth: AuthService, private authguard: AuthGuard,public common: CommonService) {
         this.animateSidebar = '';
         this.navType = 'st2';
@@ -230,7 +227,7 @@ export class AdminComponent implements OnInit, OnDestroy {
         this.setMenuAttributes(this.windowWidth);
         this.setHeaderAttributes(this.windowWidth);
 
-   
+
         this.permitedroute();
     }
     username = "";
@@ -267,8 +264,8 @@ export class AdminComponent implements OnInit, OnDestroy {
 
         // console.log(c,"nr.permission");
         // console.log(nr.permission,"nr.permission");
-        
-        
+
+
     }
 
 

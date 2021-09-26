@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <h3>{{ companyTitleSlogan }}</h3>
+      <button mat-raised-button color="primary" disableRipple>View All</button>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="manageCompanyForm">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <nav class="navbar navbar-light bg-light">
+              <span class="navbar-brand mb-0 mat-display-1">{{ companyGeneralInfoSlogan }}</span>
+            </nav>
+            <br>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Name</mat-label>
+                <mat-icon matPrefix class="fa fa-lock"></mat-icon>
+                <input formControlName="companyUserName" [class.is-invalid]="companyUserName.invalid && companyUserName.touched" [maxLength]="100" matInput>
+                <small [class.d-none]="companyUserName.valid || companyUserName.untouched" class="text-danger">Username is required</small>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Email</mat-label>
+                <mat-icon matPrefix class="fa fa-envelope"></mat-icon>
+                <input type="email" [class.is-invalid]="companyUserEmail.valid && companyUserEmail.touched" formControlName="companyUserEmail" matInput>
+                <small [class.d-none]="companyUserEmail.valid || companyUserEmail.untouched" class="text-danger">Email is required</small>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Phone</mat-label>
+                <mat-icon matPrefix class="fa fa-phone"></mat-icon>
+                <input type="tel" [class.is-invalid]="companyUserPhone.valid && companyUserPhone.touched" formControlName="companyUserPhone" [minLength]="14" [maxLength]="14" matInput>
+                <small [class.d-none]="companyUserPhone.valid || companyUserPhone.untouched" class="text-danger">Phone is required</small>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Balance</mat-label>
+                <mat-icon matPrefix class="fa fa-dollar"></mat-icon>
+                <input type="number" [class.is-invalid]="companyUserBalance.valid && companyUserBalance.touched" formControlName="companyUserBalance" [maxLength]="100" matInput>
+                <small [class.d-none]="companyUserBalance.valid || companyUserBalance.untouched" class="text-danger">Balance is required</small>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Website</mat-label>
+                <mat-icon matPrefix class="fa fa-link"></mat-icon>
+                <input formControlName="companyUserWebsite" [maxLength]="250" matInput>
+              </mat-form-field>
+              <app-tinymce formControlName="companyUserDescription" matInput></app-tinymce><br>
+              <mat-checkbox formControlName="companyUserStatus" disableRipple>Status</mat-checkbox>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <nav class="navbar navbar-light bg-light">
+              <span class="navbar-brand mb-0 mat-display-1">{{ companyLogoSlogan }}</span>
+            </nav>
+            <br>
+            <img class="w-50 border-1 m-auto" src="{{ companyImageSrc }}" alt="Logo"><br><br>
+            <input (change)="companyLogoOnChange($event)" formControlName="companyLogo" type="file" class="form-control my-1"><br><br>
+            <nav class="navbar navbar-light bg-light">
+              <span class="navbar-brand mb-0 mat-display-1">{{ companyContactPersonSlogan }}</span>
+            </nav><br>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Name</mat-label>
+                <mat-icon matPrefix class="fa fa-lock"></mat-icon>
+                <input [class.is-invalid]="companyContactName.valid && companyContactName.touched" formControlName="companyContactName" [maxLength]="100" matInput>
+                <small [class.d-none]="companyContactName.valid || companyContactName.untouched" class="text-danger">Name is required</small>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Email</mat-label>
+                <mat-icon matPrefix class="fa fa-envelope"></mat-icon>
+                <input type="email" [class.is-invalid]="companyContactEmail.valid && companyContactEmail.touched" formControlName="companyContactEmail" [maxLength]="100" matInput>
+                <small [class.d-none]="companyContactEmail.valid || companyContactEmail.untouched" class="text-danger">Email is required</small>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Phone</mat-label>
+                <mat-icon matPrefix class="fa fa-phone"></mat-icon>
+                <input type="tel" [class.is-invalid]="companyContactPhone.valid && companyContactPhone.touched" formControlName="companyContactPhone" [maxLength]="14" matInput>
+                <small [class.d-none]="companyContactPhone.valid || companyContactPhone.untouched" class="text-danger">Phone is required</small>
+              </mat-form-field>
+            <br>
+            <img class="w-50 border-1" src="{{ companyImageSrc }}" alt="Photo"><br><br>
+            <input (change)="companyContactPhotoSrcOnChange($event)" type="file" formControlName="companyContactPhoto" class="form-control my-1"><br><br>
+          </div>
+          <div class="mx-3">
+            <button (click)="formResetOnClick()" mat-raised-button color="accent" disableRipple>Reset</button>
+            <button type="button" (click)="submitManageCompanyForm()" class="mx-2" mat-raised-button color="primary" disableRipple>Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

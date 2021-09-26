@@ -5,7 +5,7 @@
     <div class="pcoded-overlay-box"></div>
     <div class="pcoded-container navbar-wrapper">
 
-        <!-- 
+        <!--
             top navbar start
         -->
         <nav class="navbar header-navbar pcoded-header" [attr.header-theme]="headerTheme" [attr.pcoded-header-position]="pcodedHeaderPosition">
@@ -16,13 +16,13 @@
                         <i class="icon-menu"></i>
                     </a>
                     <a [routerLink]="['/dashboard/']" class="ripple light text-center" style="text-transform: capitalize;">
-                        <h4>Infinity HR</h4>
+                        <h4>Infinity Warehouse</h4>
                     </a>
                     <a href="javascript:" class="mobile-options ripple light" (click)="toggleHeaderNavRight()">
                         <i class="icon-more"></i>
                     </a>
                 </div>
-                <!-- 
+                <!--
                     top navbar user area start
                 -->
                 <div class="navbar-container">
@@ -96,23 +96,23 @@
                         </li>
                     </ul>
                 </div>
-                <!-- 
+                <!--
                     top navbar user area end
                 -->
             </div>
         </nav>
-        <!-- 
+        <!--
             top navbar end
         -->
 
 
-        <!-- 
+        <!--
             pcoded main container start
         -->
 
         <div class="pcoded-main-container" [style.margin-top]="headerFixedMargin">
             <div class="pcoded-wrapper">
-                <!-- 
+                <!--
                     left sidebar start
                 -->
                 <nav id="main_navbar" class="pcoded-navbar" (clickOutside)="onClickedOutsideSidebar($event)" [exclude]="'#mobile-collapse'" [attr.navbar-theme]="navBarTheme" [attr.active-item-theme]="activeItemTheme" sub-item-theme="theme2" active-item-style="style0"
@@ -122,7 +122,6 @@
                             <div class="d-color">
                                 <div class="pcoded-navigation-label" [attr.menu-title-theme]="menuTitleTheme">Navigator</div>
                                 <ul class="pcoded-item pcoded-left-item" *ngFor="let asideItem of allmenuitems;index as i" appAccordionLink group="{{asideItem.componentpath}}">
-
                                     <li [routerLinkActive]="['active']" *ngIf="asideItem.component_group_id > 1000" group="{{asideItem.componentpath}}">
                                         <a [routerLinkActive]="['active']" class="ripple" [routerLink]="['/', asideItem.componentpath]">
                                             <span class="pcoded-micon"><i class="{{ asideItem.componenticon }}"></i></span>
@@ -147,7 +146,7 @@
                         </div>
                     </perfect-scrollbar>
                 </nav>
-                <!-- 
+                <!--
                                 left sidebar user profile start
                             -->
                 <!-- <div class="">
@@ -169,12 +168,12 @@
                                     </ul>
                                 </div>
                             </div> -->
-                <!-- 
+                <!--
                                 left sidebar user profile end
                             -->
 
 
-                <!-- 
+                <!--
                                 left sidebar menu search form start
                             -->
                 <!-- <div class="p-15 p-b-0">
@@ -186,16 +185,16 @@
                                     </div>
                                 </form>
                             </div> -->
-                <!-- 
+                <!--
                                 left sidebar menu search form end
                             -->
 
-                <!-- 
+                <!--
                                 left sidebar all menu area start
                             -->
 
 
-                <!-- 
+                <!--
                                     <li [routerLinkActive]="['active']" class="pcoded-hasmenu" *ngIf="asideItem.componentroot != null" appAccordionLink group="{{asideItem.componentroot}}" appAccordionToggle>
                                         <a [routerLinkActive]="['active']" class="ripple">
                                             <span class="pcoded-micon"><i class="fa fa-caret-down"></i></span>
@@ -223,7 +222,7 @@
                                     </li> -->
 
 
-                <!-- 
+                <!--
                                     <li (mouseleave)="fireClickLeave($event)" [routerLinkActive]="['active']" *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" [attr.dropdown-icon]="dropDownIcon" [attr.subitem-icon]="subItemIcon" appAccordionLink group="{{asideItem.state}}">
                                         <a (mouseover)="fireClick($event)" [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
                                             <div class="ripple menu-ripple"></div>
@@ -302,18 +301,18 @@
 
                 <!-- </ul> -->
 
-                <!-- 
+                <!--
                                 left sidebar all menu area end
                             -->
 
 
 
-                <!-- 
+                <!--
                     left sidebar end
                 -->
 
 
-                <!-- 
+                <!--
                   main body  wrapper start
                 -->
                 <div class="pcoded-content">
@@ -332,13 +331,13 @@
                         </div>
                     </div>
                 </div>
-                <!-- 
+                <!--
                   main body  wrapper end
                 -->
 
             </div>
         </div>
-        <!-- 
+        <!--
             pcoded main container end
         -->
 

@@ -44,6 +44,10 @@ import { ComponentAddEditComponent, DeleteComponentDataDialog, SystemComponentsC
 import { DataTablesModule } from 'angular-datatables';
 import { AddUserDialogDialog, UserManagmentComponent, UserRoleEditComponent } from './user-managment/user-managment.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {ManageCompanyComponent} from './manage-company/manage-company.component';
+import {EditorModule} from '@tinymce/tinymce-angular';
+import {TinymceModule} from 'angular2-tinymce';
+
 // import {NgxPaginationModule} from 'ngx-pagination';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -65,8 +69,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     MatSlideToggleModule,
     FullCalendarModule,
     DataTablesModule,
-    NgxPaginationModule
-  ],   
+    NgxPaginationModule,
+    EditorModule,
+    TinymceModule
+  ],
   declarations: [
     DefaultComponent,
     DashboardComponent,
@@ -139,8 +145,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     RoleEditComponent,
     UserManagmentComponent,
     AddUserDialogDialog,
-    UserRoleEditComponent
+    UserRoleEditComponent,
+    ManageCompanyComponent
   ]
 })
- 
+
 export class DefaultModule { }

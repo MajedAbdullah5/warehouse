@@ -24,10 +24,11 @@ import { AdNoticesManagmentComponent } from './notices/ad-notices-managment/ad-n
 import { RoleCreateComponent, RoleEditComponent, RoleManagmentComponent } from './role-managment/role-managment.component';
 import { SystemComponentsComponent } from './role-managment/system-components/system-components.component';
 import { UserManagmentComponent, UserRoleEditComponent } from './user-managment/user-managment.component';
+import { ManageCompanyComponent } from './manage-company/manage-company.component';
 
 export const LayoutRoutes: Routes = [
   {
-    path: 'quick-access',            
+    path: 'quick-access',
     component: QuickAccessComponent,
     data: {
       title: 'Quick Access',
@@ -37,7 +38,7 @@ export const LayoutRoutes: Routes = [
     }
   },
   {
-    path: 'dashboard',            
+    path: 'dashboard',
     component: DashboardComponent,
     data: {
       title: 'Dashboard',
@@ -46,7 +47,7 @@ export const LayoutRoutes: Routes = [
       status: true
     }
   },
-  
+
   {
     path: 'company-settings',
     component: CompanySettingsComponent,
@@ -57,14 +58,14 @@ export const LayoutRoutes: Routes = [
       status: true
     }
   },
-  { 
-    path: 'settings',   
+  {
+    path: 'settings',
     data: {
       title: 'System Settings',
-    },      
+    },
     children: [
-      { 
-        path: 'department',            
+      {
+        path: 'department',
         component: DepartmentSettingsComponent,
         data: {
           title: 'Department Settings ',
@@ -73,8 +74,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'designation',            
+      {
+        path: 'designation',
         component: DesignationSettingsComponent,
         data: {
           title: 'Designation Settings',
@@ -83,8 +84,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'employee-type-settings',            
+      {
+        path: 'employee-type-settings',
         component: EmployeeTypeSettingsComponent,
         data: {
           title: 'Employee Type Settings',
@@ -93,8 +94,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'leave-type-settings',            
+      {
+        path: 'leave-type-settings',
         component: LeaveTypeComponent,
         data: {
           title: 'Leave Type Settings',
@@ -104,7 +105,7 @@ export const LayoutRoutes: Routes = [
         }
       },
       {
-        path: 'holiday-schedule-settings',            
+        path: 'holiday-schedule-settings',
         component: HolidayScheduleSettingsComponent,
         data: {
           title: 'Holiday Schedule Settings',
@@ -114,7 +115,7 @@ export const LayoutRoutes: Routes = [
         }
       },
       {
-        path: 'shift-managment-settings',            
+        path: 'shift-managment-settings',
         component: ShiftManagmentSettingsComponent,
         data: {
           title: 'Shift Managment Settings',
@@ -125,12 +126,12 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
-  
-  { 
-    path: 'employee',   
+
+  {
+    path: 'employee',
     data: {
       title: 'Employee Managment',
-    },      
+    },
     children: [
       {
         path: 'employee-managment',
@@ -142,17 +143,17 @@ export const LayoutRoutes: Routes = [
           status: true
         },
       },
-      
+
     ]
   },
-  { 
-    path: 'leave',   
+  {
+    path: 'leave',
     data: {
       title: 'Leaves Managment',
-    },      
+    },
     children: [
-      { 
-        path: 'my-leave',      
+      {
+        path: 'my-leave',
         component: EmployeeLeaveManagmentComponent,
         data: {
           title: 'My Leaves',
@@ -162,7 +163,7 @@ export const LayoutRoutes: Routes = [
         }
       },
       {
-        path: 'all-employee-leaves',      
+        path: 'all-employee-leaves',
         component: LeaveManagmentComponent,
         data: {
           title: 'Employee Leaves',
@@ -173,14 +174,14 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
-  { 
-    path: 'meeting',   
+  {
+    path: 'meeting',
     data: {
       title: 'Meeting Managment',
-    },      
+    },
     children: [
-      { 
-        path: 'my-meeting',      
+      {
+        path: 'my-meeting',
         component: EmMittingMinutesComponent,
         data: {
           title: 'My Meeting',
@@ -190,7 +191,7 @@ export const LayoutRoutes: Routes = [
         }
       },
       {
-        path: 'meeting-minutes',      
+        path: 'meeting-minutes',
         component: AdMittingMinutesComponent,
         data: {
           title: 'Meeting Minutes',
@@ -201,15 +202,15 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
- 
-  { 
-    path: 'attendance',   
+
+  {
+    path: 'attendance',
     data: {
       title: 'Attendance Managment',
-    },      
+    },
     children: [
-      { 
-        path: 'take-attendance',      
+      {
+        path: 'take-attendance',
         component: AttendanceManagmentComponent,
         data: {
           title: 'My Attendance',
@@ -218,8 +219,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'all-employee-attendance',      
+      {
+        path: 'all-employee-attendance',
         component: AllAttendanceManagmentComponent,
         data: {
           title: 'Employee Attendance',
@@ -230,9 +231,9 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
- 
+
   {
-    path: 'visitor-managment',            
+    path: 'visitor-managment',
     component: VisitorManagmentComponent,
     data: {
       title: 'Visitor Managment',
@@ -242,14 +243,14 @@ export const LayoutRoutes: Routes = [
     }
   },
 
-  { 
-    path: 'requisition',   
+  {
+    path: 'requisition',
     data: {
       title: 'Requisition Managment',
-    },      
+    },
     children: [
-      // { 
-      //   path: 'my-requisition',      
+      // {
+      //   path: 'my-requisition',
       //   component: VisitorManagmentComponent,
       //   data: {
       //     title: 'My Requisition',
@@ -258,8 +259,8 @@ export const LayoutRoutes: Routes = [
       //     status: true
       //   }
       // },
-      { 
-        path: 'manage',      
+      {
+        path: 'manage',
         component: AdRequisitionManagmentComponent,
         data: {
           title: 'Requisition Manage',
@@ -270,14 +271,14 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
-  { 
-    path: 'grade',   
+  {
+    path: 'grade',
     data: {
       title: 'Grade Managment',
-    },      
+    },
     children: [
-      { 
-        path: 'manage',      
+      {
+        path: 'manage',
         component: GradeLevelManageComponent,
         data: {
           title: 'Grade Managment',
@@ -286,8 +287,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'matrix',      
+      {
+        path: 'matrix',
         component: GradeMatrixManageComponent,
         data: {
           title: 'Grade Matrix',
@@ -298,14 +299,14 @@ export const LayoutRoutes: Routes = [
       },
     ]
   },
-  { 
-    path: 'notice',   
+  {
+    path: 'notice',
     data: {
       title: 'Notice Management',
-    },      
+    },
     children: [
-      { 
-        path: 'manage',      
+      {
+        path: 'manage',
         component: AdNoticesManagmentComponent,
         data: {
           title:'Notice Manage',
@@ -314,13 +315,13 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-     
+
     ]
   },
 
 
   // {
-  //   path: 'visitor-managment',            
+  //   path: 'visitor-managment',
   //   component: AdRequisitionManagmentComponent,
   //   data: [
   //    {
@@ -338,11 +339,11 @@ export const LayoutRoutes: Routes = [
   //   ]
   // },
 
-  { 
-    path: 'role',        
+  {
+    path: 'role',
     children: [
-      { 
-        path: 'create',      
+      {
+        path: 'create',
         component: RoleCreateComponent,
         data: {
           title: 'Create New Role',
@@ -351,8 +352,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'manage',      
+      {
+        path: 'manage',
         component: RoleManagmentComponent,
         data: {
           title: 'Role Managment',
@@ -361,8 +362,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'edit/:id',      
+      {
+        path: 'edit/:id',
         component: RoleEditComponent,
         data: {
           title: 'Edit',
@@ -371,8 +372,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'components',      
+      {
+        path: 'components',
         component: SystemComponentsComponent,
         data: {
           title: 'Component Managment',
@@ -381,8 +382,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'user-managment',      
+      {
+        path: 'user-managment',
         component: UserManagmentComponent,
         data: {
           title: 'User Managment',
@@ -391,8 +392,8 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-      { 
-        path: 'individual-user-role/:id',      
+      {
+        path: 'individual-user-role/:id',
         component: UserRoleEditComponent,
         data: {
           title: 'Individual User Role',
@@ -401,10 +402,13 @@ export const LayoutRoutes: Routes = [
           status: true
         }
       },
-     
+
     ]
   },
-
+  {
+    path: 'manage-company',
+    component: ManageCompanyComponent
+  },
 
   { path: 'frm-validation',        component: FrmValidationComponent },
   { path: 'data-table',            component: TblDatatableComponent }
