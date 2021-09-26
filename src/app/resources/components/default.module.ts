@@ -47,6 +47,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import {ManageCompanyComponent} from './manage-company/manage-company.component';
 import {EditorModule} from '@tinymce/tinymce-angular';
 import {TinymceModule} from 'angular2-tinymce';
+import { ManageBrandComponent } from './manage-brand/manage-brand.component';
 
 // import {NgxPaginationModule} from 'ngx-pagination';
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -146,7 +147,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     UserManagmentComponent,
     AddUserDialogDialog,
     UserRoleEditComponent,
-    ManageCompanyComponent
+    ManageCompanyComponent,
+    ManageBrandComponent
   ]
 })
 

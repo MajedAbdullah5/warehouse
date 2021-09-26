@@ -25,6 +25,7 @@ import { RoleCreateComponent, RoleEditComponent, RoleManagmentComponent } from '
 import { SystemComponentsComponent } from './role-managment/system-components/system-components.component';
 import { UserManagmentComponent, UserRoleEditComponent } from './user-managment/user-managment.component';
 import { ManageCompanyComponent } from './manage-company/manage-company.component';
+import { ManageBrandComponent } from './manage-brand/manage-brand.component';
 
 export const LayoutRoutes: Routes = [
   {
@@ -408,6 +409,10 @@ export const LayoutRoutes: Routes = [
   {
     path: 'manage-company',
     component: ManageCompanyComponent
+  },
+  {
+    path: 'manage-brand',
+    component: ManageBrandComponent
   },
 
   { path: 'frm-validation',        component: FrmValidationComponent },

@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between">
+      <h3>{{ brandTitleSlogan }}</h3>
+      <button mat-raised-button color="primary" disableRipple>View All</button>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="manageBrandForm">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <nav class="navbar navbar-light bg-light">
+              <span class="navbar-brand mb-0 mat-display-1">{{ brandGeneralInfoSlogan }}</span>
+            </nav>
+            <br>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Name</mat-label>
+              <mat-icon matPrefix class="fa fa-lock"></mat-icon>
+              <input formControlName="brandUserName" [class.is-invalid]="brandUserName.invalid && brandUserName.touched" [maxLength]="100" matInput>
+              <small [class.d-none]="brandUserName.valid || brandUserName.untouched" class="text-danger">Username is required</small>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Company</mat-label>
+              <mat-icon matPrefix class="fa fa-industry"></mat-icon>
+              <mat-select [class.is-invalid]="brandCompanyHasError && brandUserCompany.touched" (blur)="validateBrandCompany(brandUserCompany.value)" (change)="validateBrandCompany(brandUserCompany.value)" formControlName="brandUserCompany">
+                <mat-option value="default">None</mat-option>
+                <mat-option *ngFor="let company of brandCompanies" [value]="company">{{company}}</mat-option>
+              </mat-select>
+              <small [class.d-none]="!brandCompanyHasError || brandUserCompany.untouched" class="text-danger">Select a company</small>
+            </mat-form-field>
+            <app-tinymce formControlName="brandUserDescription" matInput></app-tinymce><br>
+            <mat-checkbox formControlName="brandUserStatus" disableRipple>Status</mat-checkbox>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <nav class="navbar navbar-light bg-light">
+              <span class="navbar-brand mb-0 mat-display-1">{{ brandLogoSlogan }}</span>
+            </nav>
+            <br>
+            <img class="w-50 border-1 m-auto" src="{{ brandImageSrc }}" alt="Logo"><br><br>
+            <input (change)="brandLogoOnChange($event)" formControlName="brandLogo" type="file" class="form-control my-1"><br><br>
+            <br>
+          </div>
+          <div class="mx-3">
+            <button (click)="formResetOnClick()" mat-raised-button color="accent" disableRipple>Reset</button>
+            <button type="button" (click)="submitManageBrandForm()" class="mx-2" mat-raised-button color="primary" disableRipple>Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
